@@ -1,14 +1,11 @@
-import { Link } from "react-router-dom"
+import Navbar from "../components/navbar";
 
 export function Search() {
     return(
     <div>
+        <Navbar />
         <h1>Search Page</h1>
         <p>Hello, Tent Talk!</p>
-        <Link to="/">Home </Link>
-        <Link to="/search">Search </Link>
-        <Link to="/review">Review Form </Link>
-        <Link to="/campground">Campground Page</Link>
     </div>
     );
 }
