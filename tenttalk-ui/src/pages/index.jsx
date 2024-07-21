@@ -1,4 +1,8 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react'
+import { Link } from 'react-router-dom'
 import Navbar from "../components/navbar";
+
 
 export function Index() {
     return(
