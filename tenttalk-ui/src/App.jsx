@@ -7,6 +7,7 @@ import { Search } from './pages/search'
 import { Login } from './pages/login'
 import { Register } from './pages/register'
 import { Account } from './pages/account'
+import { CreateCampground } from './pages/createcampground'
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/login" element={<Login/>} />
         <Route path="/register" element={<Register/>} />
         <Route path="/account" element={<Account/>} />
+        <Route path="/create-campground" element={<CreateCampground/>} />
       </Routes>
     </HashRouter>
   )
