@@ -5,7 +5,7 @@ export function ReviewForm() {
     <div>
         <Navbar />
         <h1>Review Form</h1>
-        <p>Hello, Tent Talk!</p> 
+        <ReviewForm />
     </div>
     );
 }
