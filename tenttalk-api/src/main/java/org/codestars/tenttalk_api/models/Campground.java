@@ -1,27 +1,28 @@
-package models;
+package org.codestars.tenttalk_api.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 import java.util.List;
 
 @Entity
-public class Campground {
-   @Id
-   @GeneratedValue
-    private int id;
+public class Campground extends AbstractEntity{
+
     private String name;
     private String address;
     private String placeId;
     private int rating;
 
+    @OneToMany
     private List<Review> reviews;
+
+    @OneToMany
     private List<Tag> tags;
 
 
-    public Campground(int id, String name, String address, String placeId, int rating, List<Review> reviews, List<Tag> tags) {
-        this.id = id;
+    public Campground(String name, String address, String placeId, int rating, List<Review> reviews, List<Tag> tags) {
         this.name = name;
         this.address = address;
         this.placeId = placeId;
@@ -31,11 +32,6 @@ public class Campground {
     }
 
     public Campground(){};
-
-
-    public int getId() {
-        return id;
-    }
 
     public String getName() {
         return name;

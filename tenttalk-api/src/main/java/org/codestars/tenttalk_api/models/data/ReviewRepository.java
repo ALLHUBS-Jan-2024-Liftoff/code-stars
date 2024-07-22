@@ -1,6 +1,6 @@
-package data;
+package org.codestars.tenttalk_api.models.data;
 
-import models.Review;
+import org.codestars.tenttalk_api.models.Review;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
