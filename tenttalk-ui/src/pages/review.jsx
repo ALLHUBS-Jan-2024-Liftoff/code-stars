@@ -1,10 +1,11 @@
 import Navbar from "../components/navbar";
+import ReviewForm from "../components/reviewform/ReviewForm";
 
-export function ReviewForm() {
+export function Review() {
     return(
     <div>
         <Navbar />
-        <h1>Review Form</h1>
+        <h1>Write a Review</h1>
         <ReviewForm />
     </div>
     );

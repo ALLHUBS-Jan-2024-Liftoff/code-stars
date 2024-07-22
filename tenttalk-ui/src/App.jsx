@@ -1,7 +1,7 @@
 import './App.css'
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import { Index } from './pages/index'
-import { ReviewForm } from './pages/reviewform'
+import { Review } from './pages/review'
 import { Campground } from './pages/campground'
 import { Search } from './pages/search'
 import { Login } from './pages/login'
@@ -16,7 +16,7 @@ function App() {
     <HashRouter>
       <Routes>
         <Route path="/" element={<Index/>} />
-        <Route path="/review" element={<ReviewForm/>} />
+        <Route path="/review" element={<Review/>} />
         <Route path="/campground" element={<Campground/>} />
         <Route path="/search" element={<Search/>} />
         <Route path="/login" element={<Login/>} />
