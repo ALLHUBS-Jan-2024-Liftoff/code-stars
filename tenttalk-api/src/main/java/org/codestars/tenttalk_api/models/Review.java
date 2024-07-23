@@ -1,24 +1,33 @@
-package models;
+package org.codestars.tenttalk_api.models;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
 @Entity
-public class Review {
-   @Id
-   @GeneratedValue
-    private int id;
+public class Review extends AbstractEntity {
+
     private String review;
+
     private int rating;
+
+    @ManyToOne
     private Campground campground;
+
+    @ManyToOne
+    //@NotNull(message = "")
     private User user;
+
+    @ManyToMany
     private List<Tag> tags;
 
-    public Review(int id, String review, int rating, Campground campground, User user, List<Tag> tags) {
-        this.id = id;
+    public Review(String review, int rating, Campground campground, User user, List<Tag> tags) {
+
         this.review = review;
         this.rating = rating;
         this.campground = campground;
@@ -27,14 +36,6 @@ public class Review {
     }
 
     public Review(){};
-
-    public int getId() {
-        return id;
-    }
-
-    public String getReview() {
-        return review;
-    }
 
     public void setReview(String review) {
         this.review = review;
