@@ -14,7 +14,7 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("")
+    @GetMapping("user")
     public String signedIn() {
         return "No Bears Allowed";
     }
