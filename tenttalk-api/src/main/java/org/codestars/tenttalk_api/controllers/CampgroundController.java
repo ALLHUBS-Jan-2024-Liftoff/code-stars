@@ -5,7 +5,10 @@ import org.codestars.tenttalk_api.models.data.CampgroundRepository;
 import org.codestars.tenttalk_api.models.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CampgroundController {
@@ -15,27 +18,14 @@ public class CampgroundController {
     @Autowired
     private CampgroundRepository campgroundRepository;
 
-    @PostMapping("campground/create")
+    @GetMapping("createCampground")
     public String createCamp(){
-        //todo: method takes usersubmission and inserts into databse
-        //todo: takes json -> java -> sql
-        //todo: returns response campgroundID or "Sucessfully Created"
-
-
-        return "Campground sucessfully created";
+        return "Tent";
     }
 
-    @GetMapping("")
-    public String findAllCampgrounds(){
-
-        return "All Campgrounds";
+    @GetMapping("createReview")
+    public String createReview() {
+        return "No Bears Allowed";
     }
-
-
-
-    //getAllCampgrounds
-    //filter
-
-
 
 }
