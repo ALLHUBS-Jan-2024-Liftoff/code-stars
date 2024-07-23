@@ -19,7 +19,7 @@ public class CampgroundController {
     public String createCamp(){
         //todo: method takes usersubmission and inserts into databse
         //todo: takes json -> java -> sql
-        //todo: returns response campgroundID or "Sucessfully Created"
+        //todo: return response campgroundID or "Sucessfully Created"
 
 
         return "Campground sucessfully created";
