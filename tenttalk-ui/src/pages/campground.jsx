@@ -6,6 +6,9 @@ export function Campground() {
         <Navbar />
         <h1>Campground Page</h1>
         <p>Hello, Tent Talk!</p> 
+
+        <Share />
+        
     </div>
     );
 }
