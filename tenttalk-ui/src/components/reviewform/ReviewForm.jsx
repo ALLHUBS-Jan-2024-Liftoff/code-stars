@@ -1,65 +1,67 @@
-import React from 'react'
+import React, { useState } from 'react';
+import axios from 'axios';
 
 export default function ReviewForm() {
+
+    const [review, setReview] = useState({
+        campground: "",
+        rating: "",
+        feedback: "",
+    })
+
+    const{campground, rating, feedback} = review;
+
+    const onInputChange =(e)=> {
+        setReview({...review,[e.target.name]:e.target.value})
+    }
+
+    const onSubmit = async (event) => {
+        event.preventDefault();
+        await axios.post("http://localhost:8080/review")
+    };
+
   return (
     <div>
-        <form>
-            <div class="form-group">
-                <label for="campground">Campground</label>
-                <input list="campground" class="form-control" />
-                <datalist id="campground">
-                    <option value="Campground 1" />
-                    <option value="Campground 2" />
-                </datalist>
+        <form onSubmit={(event) => onSubmit(event)}>
+            <div className="form-group">
+                <label htmlFor="campground">Campground</label>
+                <input 
+                    type="text" 
+                    name="campground"
+                    id="campground" 
+                    value={campground} 
+                    onChange={(e)=>onInputChange(e)}
+                    className="form-control" 
+                />
             </div>
 
-            <div class="form-group">
-                <p>Rating</p>
-                <div class="form-check form-check-inline">
-                    <input type="radio" id="1star" name="rating" value="1" class="form-check-input"/>
-                    <label for="1star" class="form-check-label">1 star</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input type="radio" id="2star" name="rating" value="2" class="form-check-input"/>
-                    <label for="2star" class="form-check-label">2 stars</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input type="radio" id="3star" name="rating" value="3" class="form-check-input"/>
-                    <label for="3star" class="form-check-label">3 stars</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input type="radio" id="4star" name="rating" value="4" class="form-check-input"/>
-                    <label for="4star" class="form-check-label">4 stars</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input type="radio" id="5star" name="rating" value="5" class="form-check-input"/>
-                    <label for="5star" class="form-check-label">5 stars</label>
-                </div>
-            </div>
-                <br />
-
-            <div class="form-group">
-                <p>Tags</p>
-                <div class="form-check form-check-inline">
-                    <input type="checkbox" id="tag1" name="tag" value="tag" class="form-check-input" />
-                    <label for="tag1" class="form-check-label">Tag 1</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input type="checkbox" id="tag2" name="tag" value="tag" class="form-check-input" />
-                    <label for="tag2" class="form-check-label">Tag 2</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input type="checkbox" id="tag3" name="tag" value="tag" class="form-check-input" />
-                    <label for="tag3" class="form-check-label">Tag 3</label>
-                </div>
+            <div className="form-group">
+                <label htmlFor="rating">Rating (integer between 1-5)</label>
+                <input 
+                    type="text" 
+                    name="rating"
+                    id="rating" 
+                    value={rating} 
+                    onChange={(e)=>onInputChange(e)}
+                    className="form-control" 
+                />
             </div>
             
-            <div class="form-group">
-                <label for="review">Review</label> <br />
-                <textarea rows="5" cols="50" name="review" id="review" class="form-control">Write review here...</textarea>
+            <div className="form-group">
+                <label htmlFor="feedback">Review</label> <br />
+                <textarea 
+                    id="feedback" 
+                    name="feedback" 
+                    value={feedback} 
+                    onChange={(e)=>onInputChange(e)}
+                    rows="5" 
+                    cols="50" 
+                    className="form-control">
+                    Write review here...
+                </textarea>
             </div>
             
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">Submit</button>
             
             </form>
     </div>
