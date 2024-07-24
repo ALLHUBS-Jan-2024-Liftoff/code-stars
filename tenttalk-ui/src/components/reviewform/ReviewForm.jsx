@@ -38,15 +38,19 @@ export default function ReviewForm() {
             </div>
 
             <div className="form-group">
-                <label htmlFor="rating">Rating (integer between 1-5)</label>
-                <input 
-                    type="text" 
+                <label htmlFor="rating">Rating</label>
+                <select
                     name="rating"
-                    id="rating" 
-                    value={rating} 
+                    id="rating"
+                    value={rating}
                     onChange={(e)=>onInputChange(e)}
-                    className="form-control" 
-                />
+                >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
             </div>
             
             <div className="form-group">
