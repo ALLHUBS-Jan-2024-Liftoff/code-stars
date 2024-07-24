@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function ReviewForm() {
 
@@ -17,7 +18,8 @@ export default function ReviewForm() {
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        await axios.post("http://localhost:8080/review")
+        await axios.post("http://localhost:8080/review", review);
+        useNavigate("/campground");
     };
 
   return (
