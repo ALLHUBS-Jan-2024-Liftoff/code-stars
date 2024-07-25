@@ -12,6 +12,7 @@ public class Campground extends AbstractEntity{
 
     private String name;
     private String address;
+    private String website;
     private String placeId;
     private int rating;
 
@@ -22,9 +23,10 @@ public class Campground extends AbstractEntity{
     private List<Tag> tags;
 
 
-    public Campground(String name, String address, String placeId, int rating, List<Review> reviews, List<Tag> tags) {
+    public Campground(String name, String address, String website, String placeId, int rating, List<Review> reviews, List<Tag> tags) {
         this.name = name;
         this.address = address;
+        this.website = website;
         this.placeId = placeId;
         this.rating = rating;
         this.reviews = reviews;
@@ -47,6 +49,14 @@ public class Campground extends AbstractEntity{
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
     }
 
     public String getPlaceId() {
