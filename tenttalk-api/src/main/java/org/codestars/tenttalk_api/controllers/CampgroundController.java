@@ -25,8 +25,8 @@ public class CampgroundController {
         return "New Campground Added";
     }
 
-   /* @GetMapping("/getAll")
-    public List<Campground> getAllCampgrounds(){
-        return campgroundService.getAllCampgrounds();
-    }*/
+//    @GetMapping("/getAll")
+//    public List<Campground> getAllCampgrounds(){
+//        return campgroundService.getAllCampgrounds();
+//    }
 }

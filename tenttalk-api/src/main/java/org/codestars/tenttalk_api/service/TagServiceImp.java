@@ -16,9 +16,4 @@ public class TagServiceImp implements TagService {
         return tagRepository.save(tag);
     }
 
-//    @Override
-//    public List<Review> getAllReviews() {
-//        return reviewRepository.findAll();
-//    }
-
 }

@@ -7,7 +7,7 @@ public interface TagService {
 
     public Tag saveTag(Tag tag);
 
-    //public List<Review> getAllCampReviews();
+
 
 
 }

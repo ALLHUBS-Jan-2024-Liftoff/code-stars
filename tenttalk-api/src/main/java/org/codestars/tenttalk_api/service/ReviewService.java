@@ -8,7 +8,5 @@ public interface ReviewService {
 
     public Review saveReview(Review review);
 
-    //public List<Review> getAllCampReviews();
-
 
 }
