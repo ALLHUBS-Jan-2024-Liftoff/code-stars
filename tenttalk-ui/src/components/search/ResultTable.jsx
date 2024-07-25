@@ -4,9 +4,15 @@ import axios from 'axios';
 export default function ResultTable() {
   
     const [campgrounds, setCampgrounds] = useState([]);
+
     useEffect(() => {
-        
-    });
+        loadCampgrounds();
+    },[]);
+
+    const loadCampgrounds = async () => {
+        const result = await axios.get("http://localhost:8080/campground/getAll");
+        setCampgrounds(result.data);
+    }
   
     return (
     <div>
@@ -19,11 +25,19 @@ export default function ResultTable() {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Example campground</td>
-                    <td>5</td>
-                    <td>Button</td>
-                </tr>
+
+                {
+                    campgrounds.map((campground, index)=>{
+                        <tr>
+                            <td>{campground.name}</td>
+                            <td>{campground.rating}</td>
+                            <td>
+                                <button className="btn btn-primary">View</button>
+                            </td>
+                        </tr>
+                    })
+                }
+                
             </tbody>
         </table>
     </div>
