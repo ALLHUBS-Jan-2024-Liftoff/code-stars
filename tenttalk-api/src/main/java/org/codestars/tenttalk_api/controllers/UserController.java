@@ -12,7 +12,7 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("user")
+    @GetMapping("")
     public String signedIn() {
         return "No Bears Allowed";
     }

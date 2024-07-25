@@ -7,7 +7,10 @@ import org.codestars.tenttalk_api.models.data.UserRepository;
 import org.codestars.tenttalk_api.service.CampgroundService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -19,17 +22,14 @@ public class CampgroundController {
     @Autowired
     private CampgroundService campgroundService;
 
-
     @PostMapping("/add")
     public String addCampground(@RequestBody Campground campground){
         //campgroundService.saveCampground(campground);
         return "New Campground Added";
-
     }
 
    /* @GetMapping("/getAll")
     public List<Campground> getAllCampgrounds(){
         return campgroundService.getAllCampgrounds();
     }*/
-
 }
