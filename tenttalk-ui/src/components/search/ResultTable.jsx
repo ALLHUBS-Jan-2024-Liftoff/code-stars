@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function ResultTable() {
   
@@ -32,7 +33,7 @@ export default function ResultTable() {
                             <td>{campground.name}</td>
                             <td>{campground.rating}</td>
                             <td>
-                                <button className="btn btn-primary">View</button>
+                                <Link to={`/campground/${campground.id}`} className="btn btn-primary">View</Link>
                             </td>
                         </tr>
                     })
