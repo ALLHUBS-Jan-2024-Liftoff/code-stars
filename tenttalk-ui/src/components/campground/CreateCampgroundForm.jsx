@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 
 export default function CreateCampgroundForm() {
 
+    let navigate = useNavigate();
+
     const[campground, setCampground] = useState({
         name: "",
         address: "",
@@ -19,9 +21,9 @@ export default function CreateCampgroundForm() {
     }
 
     const onSubmit = async (e)=> {
-        e.preventDefault;
-        await axios.post("http://localhost:8080/campground", campground)
-        useNavigate("/campground")
+        e.preventDefault();
+        await axios.post("http://localhost:8080/campground/add", campground);
+        navigate("/campground");
     }
 
   return (
