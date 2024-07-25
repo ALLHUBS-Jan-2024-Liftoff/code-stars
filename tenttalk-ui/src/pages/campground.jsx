@@ -7,8 +7,9 @@ export function Campground() {
         <h1>Campground Page</h1>
         <p>Hello, Tent Talk!</p> 
 
+rating, website
         <Share />
-        
+
     </div>
     );
 }
