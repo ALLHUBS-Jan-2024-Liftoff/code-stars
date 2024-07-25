@@ -1,8 +1,10 @@
 package org.codestars.tenttalk_api.controllers;
 
 
+import org.codestars.tenttalk_api.models.Campground;
 import org.codestars.tenttalk_api.models.data.CampgroundRepository;
 import org.codestars.tenttalk_api.models.data.UserRepository;
+import org.codestars.tenttalk_api.service.CampgroundService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,22 +12,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
+@RequestMapping("/campground")
+@CrossOrigin
 public class CampgroundController {
-    //@ResponseMapping Handles Both & Can be applied to the Entire Class
-    //@PostMapping Handles Post
 
     @Autowired
-    private CampgroundRepository campgroundRepository;
+    private CampgroundService campgroundService;
 
-    @GetMapping("createCampground")
-    public String createCamp(){
-        return "Tent";
+    @PostMapping("/add")
+    public String addCampground(@RequestBody Campground campground){
+        //campgroundService.saveCampground(campground);
+        return "New Campground Added";
     }
 
-    @GetMapping("createReview")
-    public String createReview() {
-        return "No Bears Allowed";
-    }
-
+   /* @GetMapping("/getAll")
+    public List<Campground> getAllCampgrounds(){
+        return campgroundService.getAllCampgrounds();
+    }*/
 }
