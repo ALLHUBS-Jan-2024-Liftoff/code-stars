@@ -1,30 +1,29 @@
 package org.codestars.tenttalk_api.models;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
-import java.util.List;
-
 @Entity
 public class User extends AbstractEntity {
+
     @NotBlank(message = "Email is required")
-    @Email(message = "Must be valid Email")
+    @Email(message = "Must be a valid email")
     private String email;
 
-    @OneToMany
-    private List<Campground> favorites;
+    @NotBlank(message = "Username is required")
+    private String username;
 
-    public User (String email, List<Campground> favorites) {
+    @NotBlank(message = "Password is required")
+    private String password;
 
+    public User() {}
+
+    public User(String email, String username, String password) {
         this.email = email;
-        this.favorites = favorites;
+        this.username = username;
+        this.password = password;
     }
-
-    public User(){};
 
     public String getEmail() {
         return email;
@@ -34,12 +33,21 @@ public class User extends AbstractEntity {
         this.email = email;
     }
 
-    public List<Campground> getFavorites() {
-        return favorites;
+    public String getUsername() {
+        return username;
     }
 
-    public void setFavorites(List<Campground> favorites) {
-        this.favorites = favorites;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
+
 
