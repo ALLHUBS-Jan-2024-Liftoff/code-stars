@@ -8,7 +8,7 @@ public interface CampgroundService {
 
     public Campground saveCampground(Campground campground);
 
-    public List<Campground> getAllCampgrounds();
+    //public List<Campground> getAllCampgrounds();
 
 
 }
