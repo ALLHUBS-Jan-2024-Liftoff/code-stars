@@ -24,7 +24,7 @@ public class CampgroundController {
 
     @PostMapping("/add")
     public String addCampground(@RequestBody Campground campground){
-        //campgroundService.saveCampground(campground);
+        campgroundService.saveCampground(campground);
         return "New Campground Added";
     }
 
