@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserController {
-
-    //@PostMapping Handles Post
-
+    
     @Autowired
     private UserRepository userRepository;
 
