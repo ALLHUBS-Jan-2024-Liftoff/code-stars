@@ -1,28 +1,74 @@
-import React from 'react'
+import React, { useState } from 'react';
+import axios from 'axios';
 
 export default function RegisterForm() {
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [verifyPassword, setVerifyPassword] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (password !== verifyPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+    try {
+      const response = await axios.post('/api/users/register', { email, username, password });
+      console.log('Registration successful:', response.data);
+    } catch (error) {
+      console.error('Registration error:', error);
+    }
+  };
+
   return (
-    <form>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" />
-        </div>
-
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" class="form-control" id="username" />
-        </div>
-
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" id="password" />
-        </div>
-
-        <div class="form-group">
-          <label for="verifyPassword">Verify Password</label>
-          <input type="password" class="form-control" id="verifyPassword" />
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-  )
+    <form onSubmit={handleSubmit}>
+      <div className="form-group">
+        <label htmlFor="email">Email</label>
+        <input
+          type="email"
+          className="form-control"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="username">Username</label>
+        <input
+          type="text"
+          className="form-control"
+          id="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          className="form-control"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="verifyPassword">Verify Password</label>
+        <input
+          type="password"
+          className="form-control"
+          id="verifyPassword"
+          value={verifyPassword}
+          onChange={(e) => setVerifyPassword(e.target.value)}
+          required
+        />
+      </div>
+      <button type="submit" className="btn btn-primary">Register</button>
+    </form>
+  );
 }
+
