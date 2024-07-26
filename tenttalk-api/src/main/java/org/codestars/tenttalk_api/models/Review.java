@@ -35,6 +35,8 @@ public class Review extends AbstractEntity {
         this.tags = tags;
     }
 
+
+
     public Review(){};
 
     public void setReview(String review) {

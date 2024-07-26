@@ -16,10 +16,12 @@ export default function ReviewForm() {
         setReview({...review,[e.target.name]:e.target.value})
     }
 
+    const navigate = useNavigate();
+
     const onSubmit = async (event) => {
         event.preventDefault();
-        await axios.post("http://localhost:8080/review", review);
-        useNavigate("/campground");
+        await axios.post("http://localhost:8080/review/add", review);
+        navigate("/campground");
     };
 
   return (
