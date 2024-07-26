@@ -1,6 +1,7 @@
 package org.codestars.tenttalk_api.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -13,9 +14,11 @@ public class Campground extends AbstractEntity{
     private int rating;
 
     @OneToMany
+
     private List<Review> reviews;
 
     @OneToMany
+
     private List<Tag> tags;
 
 

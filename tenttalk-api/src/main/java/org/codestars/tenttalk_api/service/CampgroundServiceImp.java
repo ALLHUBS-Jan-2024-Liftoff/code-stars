@@ -18,8 +18,8 @@ public class CampgroundServiceImp implements CampgroundService {
         return campgroundRepository.save(campground);
     }
 
-//    @Override
-//    public List<Campground> getAllCampgrounds() {
-//        return campgroundRepository.findAll();
-//    }
+    @Override
+    public List<Campground> getAllCampgrounds() {
+        return campgroundRepository.findAll();
+    }
 }
