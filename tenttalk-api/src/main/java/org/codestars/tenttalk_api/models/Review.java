@@ -3,16 +3,13 @@ package org.codestars.tenttalk_api.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
 @Entity
 public class Review extends AbstractEntity {
 
-    private String review;
+    private String feedback;
 
     private int rating;
 
@@ -26,9 +23,9 @@ public class Review extends AbstractEntity {
     @ManyToMany
     private List<Tag> tags;
 
-    public Review(String review, int rating, Campground campground, User user, List<Tag> tags) {
+    public Review(String feedback, int rating, Campground campground, User user, List<Tag> tags) {
 
-        this.review = review;
+        this.feedback = feedback;
         this.rating = rating;
         this.campground = campground;
         this.user = user;
@@ -39,8 +36,8 @@ public class Review extends AbstractEntity {
 
     public Review(){};
 
-    public void setReview(String review) {
-        this.review = review;
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
     }
 
     public int getRating() {

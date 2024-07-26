@@ -20,7 +20,14 @@ export default function ReviewForm() {
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        await axios.post("http://localhost:8080/review/add", review);
+        console.log(review);
+        await axios.post("http://localhost:8080/review/add", {
+    "campground": {
+        "id": campground
+    },
+    "rating": rating,
+    "feedback": feedback
+});
         navigate("/campground");
     };
 
@@ -28,7 +35,7 @@ export default function ReviewForm() {
     <div>
         <form onSubmit={(event) => onSubmit(event)}>
             <div className="form-group">
-                <label htmlFor="campground">Campground</label>
+                <label htmlFor="campground">Campground ID</label>
                 <input 
                     type="text" 
                     name="campground"
