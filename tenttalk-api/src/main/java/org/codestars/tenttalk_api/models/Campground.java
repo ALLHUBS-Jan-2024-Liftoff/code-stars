@@ -1,7 +1,6 @@
 package org.codestars.tenttalk_api.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -14,12 +13,10 @@ public class Campground extends AbstractEntity{
     private String placeId;
     private int rating;
 
-    @OneToMany
-
+    @OneToMany(mappedBy = "campground", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews;
 
-    @OneToMany
-
+    @OneToMany(mappedBy = "campground", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Tag> tags;
 
 

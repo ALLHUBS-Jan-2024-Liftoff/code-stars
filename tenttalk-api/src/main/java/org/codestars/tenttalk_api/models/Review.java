@@ -1,9 +1,6 @@
 package org.codestars.tenttalk_api.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -13,14 +10,13 @@ import java.util.List;
 public class Review extends AbstractEntity {
 
     private String review;
-
     private int rating;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "campground_id")
     private Campground campground;
 
-    @ManyToOne
-    //@NotNull(message = "")
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
     @ManyToMany

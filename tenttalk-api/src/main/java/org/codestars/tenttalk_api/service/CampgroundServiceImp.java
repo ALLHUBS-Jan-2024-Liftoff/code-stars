@@ -20,6 +20,7 @@ public class CampgroundServiceImp implements CampgroundService {
 
     @Override
     public List<Campground> getAllCampgrounds() {
-        return campgroundRepository.findAll();
+
+      return campgroundRepository.findAll();
     }
 }
