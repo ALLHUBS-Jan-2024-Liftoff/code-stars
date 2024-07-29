@@ -3,13 +3,17 @@ package org.codestars.tenttalk_api.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 
 import java.util.List;
 
 @Entity
 public class Review extends AbstractEntity {
 
-    private String comments;
+    private String feedback;
+
     private int rating;
 
     @ManyToOne(/*MAPPEDBY STATEMENT*/fetch = FetchType.EAGER)
@@ -23,9 +27,10 @@ public class Review extends AbstractEntity {
     @JoinTable(name = "comments_tags")
     private List<Tag> tags;
 
-    public Review(String comments, int rating, Campground campground, User user, List<Tag> tags) {
 
-        this.comments = comments;
+    public Review(String feedback, int rating, Campground campground, User user, List<Tag> tags) {
+
+        this.feedback = feedback;
         this.rating = rating;
         this.campground = campground;
         this.user = user;
@@ -34,16 +39,8 @@ public class Review extends AbstractEntity {
 
     public Review(){};
 
-    public String getComments() {
-        return comments;
-    }
-
-    public void setComments(String comments) {
-        this.comments = comments;
-    }
-
-    public void setReview(String comments) {
-        this.comments = comments;
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
     }
 
     public int getRating() {
