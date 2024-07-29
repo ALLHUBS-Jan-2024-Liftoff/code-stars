@@ -19,7 +19,8 @@ public class Review extends AbstractEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "review_tags")
     private List<Tag> tags;
 
     public Review(String review, int rating, Campground campground, User user, List<Tag> tags) {

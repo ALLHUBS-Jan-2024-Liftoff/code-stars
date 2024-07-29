@@ -16,7 +16,8 @@ public class Campground extends AbstractEntity{
     @OneToMany(mappedBy = "campground", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews;
 
-    @OneToMany(mappedBy = "campground", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "campground_tags", joinColumns = @JoinColumn(name = "campground_id"), inverseJoinColumns  = @JoinColumn(name= "tag_id"))
     private List<Tag> tags;
 
 

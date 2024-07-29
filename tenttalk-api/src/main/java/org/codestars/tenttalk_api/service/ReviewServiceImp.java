@@ -20,9 +20,9 @@ public class ReviewServiceImp implements ReviewService {
         return reviewRepository.save(review);
     }
 
-//    @Override
-//    public List<Review> getAllReviews() {
-//        return reviewRepository.findAll();
-//    }
+    @Override
+    public List<Review> getAllReviews() {
+        return reviewRepository.findAll();
+    }
 
 }
