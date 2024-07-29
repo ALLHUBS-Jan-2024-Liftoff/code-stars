@@ -9,23 +9,23 @@ import java.util.List;
 @Entity
 public class Review extends AbstractEntity {
 
-    private String review;
+    private String comments;
     private int rating;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(/*MAPPEDBY STATEMENT*/fetch = FetchType.EAGER)
     @JoinColumn(name = "campground_id")
     private Campground campground;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "review_tags")
+    @JoinTable(name = "comments_tags")
     private List<Tag> tags;
 
-    public Review(String review, int rating, Campground campground, User user, List<Tag> tags) {
+    public Review(String comments, int rating, Campground campground, User user, List<Tag> tags) {
 
-        this.review = review;
+        this.comments = comments;
         this.rating = rating;
         this.campground = campground;
         this.user = user;
@@ -34,8 +34,16 @@ public class Review extends AbstractEntity {
 
     public Review(){};
 
-    public void setReview(String review) {
-        this.review = review;
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public void setReview(String comments) {
+        this.comments = comments;
     }
 
     public int getRating() {

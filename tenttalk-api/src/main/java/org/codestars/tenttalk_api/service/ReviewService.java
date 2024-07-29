@@ -1,13 +1,15 @@
 package org.codestars.tenttalk_api.service;
 
-import org.codestars.tenttalk_api.models.Campground;
-import org.codestars.tenttalk_api.models.Review;
+import org.codestars.tenttalk_api.dto.ReviewDTO;
 
 import java.util.List;
 
 public interface ReviewService {
 
-    public Review saveReview(Review review);
+    ReviewDTO saveReview(ReviewDTO reviewDTO);
+    List<ReviewDTO>getAllReviews();
+    ReviewDTO getReviewById(Long id);
+    ReviewDTO updateReview(Long id, ReviewDTO reviewDTO);
+    void deleteReview(Long id);
 
-    public List<Review> getAllReviews();
 }
