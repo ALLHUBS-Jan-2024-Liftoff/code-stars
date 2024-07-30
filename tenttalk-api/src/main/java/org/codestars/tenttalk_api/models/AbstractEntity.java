@@ -11,9 +11,9 @@ public abstract class AbstractEntity {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
