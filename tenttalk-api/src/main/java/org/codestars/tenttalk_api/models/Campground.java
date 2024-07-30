@@ -88,4 +88,5 @@ public class Campground extends AbstractEntity{
     public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
+
 }
