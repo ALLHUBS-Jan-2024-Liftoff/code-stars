@@ -40,11 +40,11 @@ public class ReviewController {
         return ResponseEntity.ok(review);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<ReviewDTO> updateReview(@PathVariable Long id, @RequestBody ReviewDTO reviewDTO) {
-        ReviewDTO updatedReview = reviewService.updateReview(id, reviewDTO);
-        return ResponseEntity.ok(updatedReview);
-    }
+//    @PutMapping("/{id}")
+//    public ResponseEntity<ReviewDTO> updateReview(@PathVariable Long id, @RequestBody ReviewDTO reviewDTO) {
+//        ReviewDTO updatedReview = reviewService.updateReview(id, reviewDTO);
+//        return ResponseEntity.ok(updatedReview);
+//    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteReview(@PathVariable Long id) {

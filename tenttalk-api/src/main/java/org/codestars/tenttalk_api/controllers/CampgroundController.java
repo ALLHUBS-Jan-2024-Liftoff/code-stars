@@ -43,11 +43,11 @@ public class CampgroundController {
         return ResponseEntity.ok(campground);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<CampgroundDTO> updateCampground(@PathVariable Long id, @RequestBody CampgroundDTO campgroundDTO) {
-        CampgroundDTO updatedCampground = campgroundService.updateCampground(id, campgroundDTO);
-        return ResponseEntity.ok(updatedCampground);
-    }
+//    @PutMapping("/{id}")
+//    public ResponseEntity<CampgroundDTO> updateCampground(@PathVariable Long id, @RequestBody CampgroundDTO campgroundDTO) {
+//        CampgroundDTO updatedCampground = campgroundService.updateCampground(id, campgroundDTO);
+//        return ResponseEntity.ok(updatedCampground);
+//    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCampground(@PathVariable Long id) {
