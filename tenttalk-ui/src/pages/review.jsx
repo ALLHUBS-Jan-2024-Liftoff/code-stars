@@ -1,5 +1,5 @@
 import Navbar from "../components/navbar";
-import ReviewForm from "../components/reviewform/ReviewForm";
+import ReviewForm from "../components/review/ReviewForm";
 
 export function Review() {
     return(
