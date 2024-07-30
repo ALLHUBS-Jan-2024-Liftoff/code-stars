@@ -18,8 +18,8 @@ public class ReviewServiceImp implements ReviewService {
 
     @Override
     public ReviewDTO saveReview(ReviewDTO reviewDTO) {
-        ReviewDTO review = convertToEntity(reviewDTO);
-        ReviewDTO savedReview = reviewRepository.save(review);
+        Review review = convertToEntity(reviewDTO);
+        Review savedReview = reviewRepository.save(review);
         return convertToDTO(savedReview);
     }
 
@@ -45,10 +45,10 @@ public class ReviewServiceImp implements ReviewService {
     public ReviewDTO updateReview(Long id, ReviewDTO reviewDTO) {
         Review review = reviewRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Campground not found"));
-        review.setComments(reviewDTO.getComments());
-        review.setAddress(reviewDTO.getAddress());
-        review.setWebsite(reviewDTO.getWebsite());
+        review.setFeedback(reviewDTO.getFeedback());
         review.setRating(reviewDTO.getRating());
+        review.setUser(reviewDTO.getUser());
+        review.setTags(reviewDTO.getTag());
 
         Review updatedReview = reviewRepository.save(review);
         return convertToDTO(updatedReview);
@@ -63,20 +63,20 @@ public class ReviewServiceImp implements ReviewService {
 
     private Review convertToEntity(ReviewDTO dto) {
         Review review = new Review();
-        review.setComments(dto.getComments());
-        review.setAddress(dto.getAddress());
-        review.setWebsite(dto.getWebsite());
+        review.setFeedback(dto.getFeedback());
         review.setRating(dto.getRating());
+        review.setUser(dto.getUser());
+        review.setTags(dto.getTag());
         return review;
     }
 
     private ReviewDTO convertToDTO(Review review) {
         ReviewDTO dto = new ReviewDTO();
         dto.setId(review.getId());
+        dto.setFeedback(review.getFeedback());
         dto.setRating(review.getRating());
-        dto.setComments(review.getComments());
-        dto.setWebsite(review.getWebsite());
-        dto.setRating(review.getRating());
+        dto.setUser(review.getUser());
+        dto.setTag(review.getTags());
         return dto;
     }
 

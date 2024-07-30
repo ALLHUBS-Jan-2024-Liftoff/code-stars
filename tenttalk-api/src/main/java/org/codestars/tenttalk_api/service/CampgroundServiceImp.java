@@ -71,7 +71,6 @@ public class CampgroundServiceImp implements CampgroundService {
 
     private CampgroundDTO convertToDTO(Campground campground) {
         CampgroundDTO dto = new CampgroundDTO();
-        dto.setId(campground.getId());
         dto.setName(campground.getName());
         dto.setAddress(campground.getAddress());
         dto.setWebsite(campground.getWebsite());

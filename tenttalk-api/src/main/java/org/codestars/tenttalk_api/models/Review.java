@@ -16,11 +16,12 @@ public class Review extends AbstractEntity {
 
     private int rating;
 
-    @ManyToOne(/*MAPPEDBY STATEMENT*/fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "campground_id")
     private Campground campground;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -41,6 +42,10 @@ public class Review extends AbstractEntity {
 
     public void setFeedback(String feedback) {
         this.feedback = feedback;
+    }
+
+    public String getFeedback() {
+        return feedback;
     }
 
     public int getRating() {

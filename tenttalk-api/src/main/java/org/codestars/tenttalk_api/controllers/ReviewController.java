@@ -20,9 +20,6 @@ public class ReviewController {
     private ReviewService reviewService;
 
     @PostMapping("/add")
-    public String addReview(@RequestBody Review review){
-        reviewService.saveReview(review);
-        return "";
     public ResponseEntity<ReviewDTO> createdReview (@RequestBody ReviewDTO reviewDTO){
         ReviewDTO createdReview = reviewService.saveReview(reviewDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdReview);
