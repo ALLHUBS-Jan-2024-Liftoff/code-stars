@@ -1,7 +1,9 @@
 package org.codestars.tenttalk_api.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,7 +16,8 @@ public class Campground extends AbstractEntity{
     private int rating;
 
     @OneToMany(mappedBy = "campground", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Review> reviews;
+    @JsonBackReference
+    private List<Review> reviews = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "campground_tags", joinColumns = @JoinColumn(name = "campground_id"), inverseJoinColumns  = @JoinColumn(name= "tag_id"))

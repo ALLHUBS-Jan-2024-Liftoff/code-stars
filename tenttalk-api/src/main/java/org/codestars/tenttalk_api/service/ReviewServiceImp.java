@@ -26,7 +26,9 @@ public class ReviewServiceImp implements ReviewService {
     @Override
     public List<ReviewDTO> getAllReviews() {
         List<Review> reviews = reviewRepository.findAll();
+
         List<ReviewDTO> reviewDTOs = new ArrayList<>();
+
         for (Review review : reviews) {
             reviewDTOs.add(convertToDTO(review));
         }
@@ -67,6 +69,7 @@ public class ReviewServiceImp implements ReviewService {
         review.setRating(dto.getRating());
         review.setUser(dto.getUser());
         review.setTags(dto.getTag());
+        review.setCampground(dto.getCampground());
         return review;
     }
 
@@ -77,6 +80,7 @@ public class ReviewServiceImp implements ReviewService {
         dto.setRating(review.getRating());
         dto.setUser(review.getUser());
         dto.setTag(review.getTags());
+        dto.setCampground(review.getCampground());
         return dto;
     }
 

@@ -66,6 +66,7 @@ public class CampgroundServiceImp implements CampgroundService {
         campground.setAddress(dto.getAddress());
         campground.setWebsite(dto.getWebsite());
         campground.setRating(dto.getRating());
+        //campground.setReviews(dto.getReviews());
         return campground;
     }
 
@@ -76,6 +77,7 @@ public class CampgroundServiceImp implements CampgroundService {
         dto.setAddress(campground.getAddress());
         dto.setWebsite(campground.getWebsite());
         dto.setRating(campground.getRating());
+        //dto.setReviews(campground.getReviews());
         return dto;
     }
 }
