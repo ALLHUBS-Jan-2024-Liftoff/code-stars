@@ -1,9 +1,6 @@
 package org.codestars.tenttalk_api.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -16,10 +13,11 @@ public class Campground extends AbstractEntity{
     private String placeId;
     private int rating;
 
-    @OneToMany
+    @OneToMany(mappedBy = "campground", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews;
 
-    @OneToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "campground_tags", joinColumns = @JoinColumn(name = "campground_id"), inverseJoinColumns  = @JoinColumn(name= "tag_id"))
     private List<Tag> tags;
 
 
@@ -90,4 +88,5 @@ public class Campground extends AbstractEntity{
     public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
+
 }

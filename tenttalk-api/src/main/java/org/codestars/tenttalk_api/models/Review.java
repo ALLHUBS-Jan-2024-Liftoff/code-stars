@@ -1,34 +1,37 @@
 package org.codestars.tenttalk_api.models;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
 @Entity
 public class Review extends AbstractEntity {
 
-    private String review;
+    private String feedback;
 
     private int rating;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "campground_id")
     private Campground campground;
 
-    @ManyToOne
-    //@NotNull(message = "")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "comments_tags")
     private List<Tag> tags;
 
-    public Review(String review, int rating, Campground campground, User user, List<Tag> tags) {
 
-        this.review = review;
+    public Review(String feedback, int rating, Campground campground, User user, List<Tag> tags) {
+
+        this.feedback = feedback;
         this.rating = rating;
         this.campground = campground;
         this.user = user;
@@ -37,8 +40,12 @@ public class Review extends AbstractEntity {
 
     public Review(){};
 
-    public void setReview(String review) {
-        this.review = review;
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
+    }
+
+    public String getFeedback() {
+        return feedback;
     }
 
     public int getRating() {
