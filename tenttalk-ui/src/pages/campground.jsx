@@ -13,6 +13,7 @@ export function Campground() {
 
         <Share />
         <DisplayReview id={1} />
+        <DisplayReview id={2} />
     </div>
     );
 }

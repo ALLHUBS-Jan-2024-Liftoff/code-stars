@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
 import axios from 'axios';
+import { DisplayRating } from './DisplayRating';
 
 export default function DisplayReview({id}) {
 
@@ -11,16 +12,22 @@ export default function DisplayReview({id}) {
     loadReview();
 },[]);
 
+  //gets review data by id via axios when review is loaded
   const loadReview = async () => {
     const result = await axios.get(`http://localhost:8080/review/${id}`);
     console.log(result.data);
     setReview(result.data); 
 }
+
+
   return (
-    <div>
-      <h2>Honest Review</h2>
-      <p>Rating: {review.rating} stars</p>
-      <p>"{review.feedback}"</p>
+    <div className="card">
+      <div className="card-header">
+        <h4>User's Review: <DisplayRating rating={review.rating}/></h4> 
+      </div>
+      <div className="card-body">
+        <p>"{review.feedback}"</p>
+      </div>
     </div>
   )
 }
