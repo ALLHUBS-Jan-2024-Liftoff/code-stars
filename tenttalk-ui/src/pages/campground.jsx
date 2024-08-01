@@ -1,5 +1,5 @@
 import Navbar from "../components/navbar";
-
+import DisplayReview from "../components/review/DisplayReview";
 
 import React from 'react';
 import Share from '../components/share';
@@ -12,7 +12,7 @@ export function Campground() {
         <p>Hello, Tent Talk!</p> 
 
         <Share />
-
+        <DisplayReview id={1} />
     </div>
     );
 }
