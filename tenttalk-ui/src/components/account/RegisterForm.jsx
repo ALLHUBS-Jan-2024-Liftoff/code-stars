@@ -14,7 +14,7 @@ export default function RegisterForm() {
       return;
     }
     try {
-      const response = await axios.post('/api/users/register', { email, username, password });
+      const response = await axios.post('http://localhost:8080/api/users/register', { email, username, password });
       console.log('Registration successful:', response.data);
     } catch (error) {
       console.error('Registration error:', error);

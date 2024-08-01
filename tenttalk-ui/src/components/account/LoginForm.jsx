@@ -8,7 +8,7 @@ export default function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/users/login', { email, password });
+      const response = await axios.post('http://localhost:8080/api/users/login', { email, password });
       if (response.data) {
         console.log('Login successful:', response.data);
         
