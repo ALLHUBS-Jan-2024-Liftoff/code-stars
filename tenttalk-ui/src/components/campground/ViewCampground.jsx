@@ -1,24 +1,23 @@
-import React from "react";
-import React, { useEffect,useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+
 export default function ViewCampground() {
+    const [campground, setCampground] = useState({
+        name: "",
+        address: "",
+        website: ""
+    });
 
-    const [campground,setCampground]=useState({
-        name:"",
-        address:"",
-        website:""
-    })
-
-    const {id}=useParams();
+    const { id } = useParams();
     useEffect(() => {
         loadCampground();
-    }, []);onabort
-
+      }, [id]);
+    
     const loadCampground = async () => {
-        const result = await axios.get('http://localhost:8080/campground/${id}');onabort
+        const result = await axios.get(`http://localhost:8080/campground/${id}`);
         setCampground(result.data);
     };
-    
 
     return (
       <div className="container">
@@ -27,7 +26,7 @@ export default function ViewCampground() {
                 <h2 className="text-center m-4">Campground Details</h2>
                 <div className="card">
                     <div className="card-header">
-                        Details of Campground id : {campground.id}
+                        Details of Campground : {campground.id}
                         <ul className="list-group list-group-flush">
                             <li className="list-group-item">
                                 <b>Campground:</b>
@@ -36,25 +35,19 @@ export default function ViewCampground() {
                             <li className="list-group-item">
                                 <b>Address:</b>
                                 {campground.address}
-                                
                             </li>
                             <li className="list-group-item">
                                 <b>Website Link:</b>
                                 {campground.website}
-                                
                             </li>
                         </ul>
                     </div>
                 </div>
-                <Link className="btn bt-primary my-2" to={"/"}>
-                    Back to Home
-                </Link>
+          <Link className="btn bt-primary my-2" to={"/"}>
+            Back to Home
+          </Link>
             </div>
         </div>
-       </div>
+      </div>
     );
-  }
-  
-
-
-  
+}
