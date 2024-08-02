@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import StarInput from './StarInput';
 
 export default function ReviewForm() {
+
+    
 
     const [review, setReview] = useState({
         campground: "",
@@ -45,6 +48,8 @@ export default function ReviewForm() {
                     className="form-control" 
                 />
             </div>
+
+            <StarInput iconSize={48}/>
 
             <div className="form-group">
                 <label htmlFor="rating">Rating</label>
