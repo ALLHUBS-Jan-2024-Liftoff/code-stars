@@ -25,7 +25,7 @@ public class ReviewServiceImp implements ReviewService {
 
     @Override
     public List<ReviewDTO> getAllReviews() {
-        List<Review> reviews = reviewRepository.findAll();
+        List<Review> reviews = (List<Review>) reviewRepository.findAll();
         List<ReviewDTO> reviewDTOs = new ArrayList<>();
         for (Review review : reviews) {
             reviewDTOs.add(convertToDTO(review));

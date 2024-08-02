@@ -1,12 +1,23 @@
 package org.codestars.tenttalk_api.service;
 
+
+import org.codestars.tenttalk_api.models.data.UserRepository;
 import org.codestars.tenttalk_api.models.User;
+import org.springframework.stereotype.Service;
 
-public interface UserService {
+@Service
+public class UserService {
+    private final UserRepository userRepository;
 
-    public User saveUser(User user);
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
-    //public List<Review> getAllCampReviews();
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 
-
+    public User save(User user) {
+        return userRepository.save(user);
+    }
 }
