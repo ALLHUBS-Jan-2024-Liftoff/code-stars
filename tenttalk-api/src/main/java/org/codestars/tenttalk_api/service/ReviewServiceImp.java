@@ -28,7 +28,6 @@ public class ReviewServiceImp implements ReviewService {
         List<Review> reviews = reviewRepository.findAll();
 
         List<ReviewDTO> reviewDTOs = new ArrayList<>();
-
         for (Review review : reviews) {
             reviewDTOs.add(convertToDTO(review));
         }
