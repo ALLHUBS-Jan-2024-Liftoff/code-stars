@@ -23,6 +23,7 @@ function App() {
         <Route path="/register" element={<Register/>} />
         <Route path="/account" element={<Account/>} />
         <Route path="/create-campground" element={<CreateCampground/>} />
+        <Route path="/campground/:id" element={<ViewCampground/>} />
       </Routes>
     </HashRouter>
   )
