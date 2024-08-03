@@ -10,14 +10,22 @@ export default function ViewCampground() {
     });
 
     const { id } = useParams();
+
     useEffect(() => {
         loadCampground();
       }, [id]);
     
-    const loadCampground = async () => {
-        const result = await axios.get(`http://localhost:8080/campground/${id}`);
-        setCampground(result.data);
+ const loadCampground = async () => {
+        try {
+            const result = await axios.get(`http://localhost:8080/campground/${id}`, campground);
+            console.log('Campground data:', result.data); // Debugging statement
+            setCampground(result.data);
+        } catch (error) {
+            console.error('Error fetching campground:', error);
+        }
     };
+
+    if (!campground) return <div>Loading...</div>; // Show loading message
 
     return (
       <div className="container">

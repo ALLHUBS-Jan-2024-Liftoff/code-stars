@@ -1,12 +1,13 @@
 import Navbar from "../components/navbar";
-
 import React from 'react';
 import Share from '../components/share';
-import { Link } from 'react-router-dom';
 import ViewCampground from '../components/campground/ViewCampground';
+import { Link, useParams } from "react-router-dom";
 
 
 export function Campground() {
+    const { id } = useParams();
+
     return(
     <div>
         <Navbar />
