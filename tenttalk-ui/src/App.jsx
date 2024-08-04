@@ -8,10 +8,10 @@ import { Login } from './pages/login'
 import { Register } from './pages/register'
 import { Account } from './pages/account'
 import { CreateCampground } from './pages/createcampground'
+// import ViewCampground from './components/ViewCampground'; 
 
 
 function App() {
-  
   return (
     <HashRouter>
       <Routes>
@@ -23,6 +23,7 @@ function App() {
         <Route path="/register" element={<Register/>} />
         <Route path="/account" element={<Account/>} />
         <Route path="/create-campground" element={<CreateCampground/>} />
+        <Route path="/campground/:id" element={<Campground />} /> 
       </Routes>
     </HashRouter>
   )
