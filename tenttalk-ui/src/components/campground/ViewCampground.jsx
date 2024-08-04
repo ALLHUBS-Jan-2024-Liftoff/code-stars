@@ -37,23 +37,27 @@ export default function ViewCampground() {
                         Details of Campground : {campground.id}
                         <ul className="list-group list-group-flush">
                             <li className="list-group-item">
-                                <b>Campground:</b>
+                                <b>Campground: </b>
                                 {campground.name}
                             </li>
                             <li className="list-group-item">
-                                <b>Address:</b>
+                                <b>Address: </b>
                                 {campground.address}
                             </li>
                             <li className="list-group-item">
-                                <b>Website Link:</b>
-                                {campground.website}
+                                <b>Website Link: </b>
+                                <a href={campground.website} target="_blank" rel="noopener noreferrer">
+                                  {campground.website}
+                                </a>
                             </li>
                         </ul>
-                    </div>
+                        </div>
                 </div>
-          <Link className="btn bt-primary my-2" to={"/"}>
-            Back to Home
-          </Link>
+                <div className="light-blue-box mt-3">
+                  <Link className="btn btn-primary" to={"/"}>
+                    Back to Home
+                  </Link>
+                </div>
             </div>
         </div>
       </div>

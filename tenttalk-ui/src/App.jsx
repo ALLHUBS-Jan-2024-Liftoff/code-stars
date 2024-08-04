@@ -12,7 +12,6 @@ import { CreateCampground } from './pages/createcampground'
 
 
 function App() {
-  
   return (
     <HashRouter>
       <Routes>
@@ -24,7 +23,7 @@ function App() {
         <Route path="/register" element={<Register/>} />
         <Route path="/account" element={<Account/>} />
         <Route path="/create-campground" element={<CreateCampground/>} />
-        {/* <Route path="/campground/:id" element={<ViewCampground />} />  */}
+        <Route path="/campground/:id" element={<Campground />} /> 
       </Routes>
     </HashRouter>
   )
