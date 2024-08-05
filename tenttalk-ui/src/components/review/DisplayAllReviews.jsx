@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DisplayReview from './DisplayReview'
+import DisplayAverageRating from '../campground/DisplayAverateRating';
 
 export function DisplayAllReviews({campgroundId}) {
 
@@ -26,13 +27,10 @@ export function DisplayAllReviews({campgroundId}) {
     // maps reviews into array of DisplayReview components
     const listAllReviews = reviews.map(review => <DisplayReview id={review.id}/>);
 
-    // filters reviews to include only reviews with given campgroundId
-    // const campgroundReviews = reviews.filter(review =>
-    //     review.
-    // );
 
   return (
     <div>
+        <DisplayAverageRating reviewArray={reviews} />
         {listAllReviews}
     </div>
   )

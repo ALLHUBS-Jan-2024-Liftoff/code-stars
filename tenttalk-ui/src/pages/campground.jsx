@@ -3,7 +3,9 @@ import React from 'react';
 import Share from '../components/share';
 import ViewCampground from '../components/campground/ViewCampground';
 import { DisplayAllReviews } from "../components/review/DisplayAllReviews";
+import { DisplayRating } from "../components/review/DisplayRating";
 import { Link, useParams } from "react-router-dom";
+import DisplayAverateRating from "../components/campground/DisplayAverateRating";
 
 
 export function Campground() {
@@ -13,6 +15,7 @@ export function Campground() {
     <div>
         <Navbar />
         <ViewCampground />
+
         <Share />
         <DisplayAllReviews campgroundId={ id }/>
     </div>

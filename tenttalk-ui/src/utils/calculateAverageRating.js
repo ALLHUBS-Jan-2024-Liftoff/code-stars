@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const calculateAverageRating = async (campgroundId) => {
+export default async function calculateAverageRating(campgroundId) {
         let resultArray = [];
         let ratingArray = [];
 
