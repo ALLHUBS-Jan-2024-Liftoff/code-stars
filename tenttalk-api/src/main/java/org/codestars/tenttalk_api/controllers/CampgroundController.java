@@ -4,7 +4,7 @@ package org.codestars.tenttalk_api.controllers;
 import org.codestars.tenttalk_api.models.Campground;
 import org.codestars.tenttalk_api.models.data.CampgroundRepository;
 
-import org.codestars.tenttalk_api.service.CampgroundService1;
+import org.codestars.tenttalk_api.service.CampgroundService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ import java.util.Optional;
 public class CampgroundController {
 
     @Autowired
-    private CampgroundService1 campgroundService;
+    private CampgroundService campgroundService;
     @Autowired
     private CampgroundRepository campgroundRepository;
 

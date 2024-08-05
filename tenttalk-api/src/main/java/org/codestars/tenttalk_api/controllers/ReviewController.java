@@ -1,12 +1,9 @@
 package org.codestars.tenttalk_api.controllers;
 
-import jakarta.servlet.http.HttpServletResponse;
-import org.codestars.tenttalk_api.models.Review;
 import org.codestars.tenttalk_api.models.Review;
 import org.codestars.tenttalk_api.dto.ReviewDTO;
 import org.codestars.tenttalk_api.models.data.ReviewRepository;
 import org.codestars.tenttalk_api.service.ReviewService;
-import org.codestars.tenttalk_api.service.ReviewService1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 
 @RestController
 @RequestMapping("/review")
@@ -22,7 +18,7 @@ import java.util.Scanner;
 public class ReviewController {
 
     @Autowired
-    private ReviewService1 reviewService;
+    private ReviewService reviewService;
     @Autowired
     private ReviewRepository reviewRepository;
 
@@ -81,11 +77,11 @@ public class ReviewController {
         return ResponseEntity.ok(review);
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Review> updateReview(@PathVariable Long id, @RequestBody ReviewDTO reviewDTO) {
-        Review review = reviewService.updateReview(id, reviewDTO);
-        return ResponseEntity.ok(review);
-    }
+//    @PutMapping("/update/{id}")
+//    public ResponseEntity<Review> updateReview(@PathVariable Long id, @RequestBody ReviewDTO reviewDTO) {
+//        Review review = reviewService.updateReview(id, reviewDTO);
+//        return ResponseEntity.ok(review);
+//    }
 
 //    @PutMapping("/{id}")
 //    public Review updateReview(@PathVariable Long id, @RequestBody Review review) {
