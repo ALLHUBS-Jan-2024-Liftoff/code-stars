@@ -30,7 +30,8 @@ export function DisplayAllReviews({campgroundId}) {
 
   return (
     <div>
-        <DisplayAverageRating reviewArray={reviews} />
+        <h3>Average Rating:</h3>
+        <DisplayAverageRating reviewArray={reviews} size={48}/>
         {listAllReviews}
     </div>
   )
