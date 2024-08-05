@@ -24,11 +24,12 @@ export function DisplayAllReviews() {
         
     }
     
+    // maps reviews into array of DisplayReview components
+    const listReviews = reviews.map(review => <DisplayReview id={review.id}/>)
 
   return (
     <div>
-        {/* map function to call DisplayReview by id for each review object in reviews array */}
-        <DisplayReview />
+        {listReviews}
     </div>
   )
 }
