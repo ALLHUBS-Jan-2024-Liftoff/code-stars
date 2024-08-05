@@ -62,7 +62,6 @@ public class ReviewController {
             return ResponseEntity.ok(review);
         }
 
-
     @GetMapping("/getAll")
     public List<Review> getAllReviews(){
         return reviewRepository.findAll();
@@ -77,27 +76,12 @@ public class ReviewController {
         return ResponseEntity.ok(review);
     }
 
-//    @PutMapping("/update/{id}")
-//    public ResponseEntity<Review> updateReview(@PathVariable Long id, @RequestBody ReviewDTO reviewDTO) {
-//        Review review = reviewService.updateReview(id, reviewDTO);
-//        return ResponseEntity.ok(review);
-//    }
 
-//    @PutMapping("/{id}")
-//    public Review updateReview(@PathVariable Long id, @RequestBody Review review) {
-//        Review review1 = reviewRepository.findById(id)
-//                .orElseThrow(() -> new RuntimeException("Review not found"));
-//        review1.setFeedback(review.getFeedback());
-//        review1.setRating(review.getRating());
-//        review1.setCampground(review.getCampground());
-//        review1.setUser(review.getUser());
-//        review1.setTags(review.getTags());
-//
-//        return reviewRepository.save(review1);
-//
-//    }
-
-
+    @PutMapping("/{id}")
+    public ResponseEntity<Review> updateReview(@PathVariable Long id, @RequestBody ReviewDTO reviewDTO){
+        Review review = reviewService.updateReview(id, reviewDTO);
+        return ResponseEntity.ok(review);
+    }
 
 
     @DeleteMapping("/{id}")
