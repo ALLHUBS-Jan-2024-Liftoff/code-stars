@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DisplayReview from './DisplayReview'
-import DisplayAverageRating from '../campground/DisplayAverateRating';
+import DisplayAverageRating from '../campground/DisplayAverageRating';
 
 export function DisplayAllReviews({campgroundId}) {
 

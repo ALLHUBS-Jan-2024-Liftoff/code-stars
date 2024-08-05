@@ -5,7 +5,7 @@ import ViewCampground from '../components/campground/ViewCampground';
 import { DisplayAllReviews } from "../components/review/DisplayAllReviews";
 import { DisplayRating } from "../components/review/DisplayRating";
 import { Link, useParams } from "react-router-dom";
-import DisplayAverateRating from "../components/campground/DisplayAverateRating";
+import DisplayAverateRating from "../components/campground/DisplayAverageRating";
 
 
 export function Campground() {
