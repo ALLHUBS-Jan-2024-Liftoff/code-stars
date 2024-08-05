@@ -18,7 +18,7 @@ export default function ViewCampground() {
  const loadCampground = async () => {
         try {
             const result = await axios.get(`http://localhost:8080/campground/${id}`, campground);
-            console.log('Campground data:', result.data); // Debugging statement
+            //console.log('Campground data:', result.data); // Debugging statement
             setCampground(result.data);
         } catch (error) {
             console.error('Error fetching campground:', error);
