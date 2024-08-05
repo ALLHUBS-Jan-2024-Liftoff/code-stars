@@ -48,14 +48,14 @@ public class ReviewController {
         return ResponseEntity.ok(review);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteReview(@PathVariable Long id, @RequestBody Review review) {
-        Review review1 = reviewRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Review not found"));
-
-        reviewRepository.delete(review1);
-        return ResponseEntity.noContent().build();
-    }
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> deleteReview(@PathVariable Long id, @RequestBody Review review) {
+//        Review review1 = reviewRepository.findById(id)
+//                .orElseThrow(() -> new RuntimeException("Review not found"));
+//
+//        reviewRepository.delete(review1);
+//        return ResponseEntity.noContent().build();
+//    }
     
 }
 
