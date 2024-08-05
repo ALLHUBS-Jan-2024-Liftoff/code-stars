@@ -1,16 +1,38 @@
 package org.codestars.tenttalk_api.service;
 
-import org.codestars.tenttalk_api.dto.CampgroundDTO;
 import org.codestars.tenttalk_api.models.Campground;
+import org.codestars.tenttalk_api.models.Review;
+import org.codestars.tenttalk_api.models.data.ReviewRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.codestars.tenttalk_api.models.data.CampgroundRepository;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public interface CampgroundService {
+@Service
+public class CampgroundService {
 
-    CampgroundDTO saveCampground(CampgroundDTO campgroundDTO);
-    List<CampgroundDTO>getAllCampgrounds();
-    CampgroundDTO getCampgroundById(Long id);
-    CampgroundDTO updateCampground(Long id, CampgroundDTO campgroundDTO);
-    void deleteCampground(Long id);
+    @Autowired
+    private CampgroundRepository campgroundRepository;
+    @Autowired
+    private ReviewRepository reviewRepository;
+
+    @Transactional
+    public Campground addWithReviews(Campground campground) {
+        List<Review> reviews = campground.getReviews();
+        campground.setReviews(new ArrayList<>());
+
+        Campground savedCampground = campgroundRepository.save(campground);
+
+        for(Review review: reviews){
+            review.setCampground(savedCampground);
+            reviewRepository.save(review);
+            savedCampground.getReviews().add(review);
+        }
+        return campgroundRepository.save(savedCampground);
+    }
+
 
 }

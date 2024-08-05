@@ -1,6 +1,10 @@
 package org.codestars.tenttalk_api.dto;
 
 import org.codestars.tenttalk_api.models.AbstractEntity;
+import org.codestars.tenttalk_api.models.Review;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CampgroundDTO {
     private Long id;
@@ -9,14 +13,16 @@ public class CampgroundDTO {
     private String website;
     private String placeId;
     private int rating;
+    private List<Review> reviews = new ArrayList<>();
 
-    public CampgroundDTO(Long id, String name, String address, String website, String placeId, int rating) {
+    public CampgroundDTO (Long id, String name, String address, String website, String placeId, int rating, List<Review> reviews) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.website = website;
         this.placeId = placeId;
         this.rating = rating;
+        this.reviews = reviews;
     }
 
     public CampgroundDTO(){}
@@ -66,4 +72,12 @@ public class CampgroundDTO {
     }
 
     public void setId(Long id){ this.id = id;}
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
 }

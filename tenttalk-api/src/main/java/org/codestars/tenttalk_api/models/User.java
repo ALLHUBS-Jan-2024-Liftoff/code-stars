@@ -1,12 +1,16 @@
 package org.codestars.tenttalk_api.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class User extends AbstractEntity {
-
     @NotBlank(message = "Email is required")
     @Email(message = "Must be a valid email")
     private String email;
@@ -49,5 +53,4 @@ public class User extends AbstractEntity {
         this.password = password;
     }
 }
-
 
