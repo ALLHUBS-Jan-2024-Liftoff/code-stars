@@ -16,7 +16,7 @@ export function Campground() {
         <ViewCampground />
         <Share />
 
-        <DisplayAllReviews />
+        <DisplayAllReviews campgroundId={ id }/>
     </div>
     );
 }
