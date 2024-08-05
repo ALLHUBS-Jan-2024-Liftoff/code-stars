@@ -20,14 +20,11 @@ export default function ReviewForm() {
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        console.log(review);
         await axios.post("http://localhost:8080/review/add", {
-    "campground": {
-        "id": campground
-    },
-    "rating": rating,
-    "feedback": feedback
-});
+            "campgroundId": campground,
+            "rating": rating,
+            "feedback": feedback
+        });
         navigate("/campground");
     };
 

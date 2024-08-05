@@ -12,10 +12,10 @@ public class Tag extends AbstractEntity {
 
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Campground> campgrounds;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Review> reviews;
 
     public Tag(String name) {
