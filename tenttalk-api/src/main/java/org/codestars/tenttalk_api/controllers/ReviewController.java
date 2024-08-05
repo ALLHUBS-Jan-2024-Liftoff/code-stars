@@ -22,40 +22,6 @@ public class ReviewController {
     @Autowired
     private ReviewRepository reviewRepository;
 
-//    @PostMapping("/add")
-//    public ResponseEntity<ReviewDTO> createdReview (@RequestBody ReviewDTO reviewDTO){
-//        ReviewDTO createdReview = reviewService.saveReview(reviewDTO);
-//        return ResponseEntity.status(HttpStatus.CREATED).body(createdReview);
-//    }
-//
-//    @GetMapping("/getAll")
-//    public ResponseEntity<List<ReviewDTO>> getAllReviews() {
-//        List<ReviewDTO> review = reviewService.getAllReviews();
-//        return ResponseEntity.ok(review);
-//    }
-//
-//    @GetMapping("/{id}")
-//    public ResponseEntity<ReviewDTO> getReviewById(@PathVariable Long id) {
-//        ReviewDTO review = reviewService.getReviewById(id);
-//        if (review == null) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-//        }
-//        return ResponseEntity.ok(review);
-//    }
-//
-//    @PutMapping("/{id}")
-//    public ResponseEntity<ReviewDTO> updateReview(@PathVariable Long id, @RequestBody ReviewDTO reviewDTO) {
-//        ReviewDTO updatedReview = reviewService.updateReview(id, reviewDTO);
-//        return ResponseEntity.ok(updatedReview);
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Void> deleteReview(@PathVariable Long id) {
-//        reviewService.deleteReview(id);
-//        return ResponseEntity.noContent().build();
-//    }
-
-
     @PostMapping("/add")
     public ResponseEntity<Review> addReview(@RequestBody ReviewDTO reviewDTO) {
             Review review = reviewService.addReview(reviewDTO);
@@ -76,13 +42,11 @@ public class ReviewController {
         return ResponseEntity.ok(review);
     }
 
-
     @PutMapping("/{id}")
     public ResponseEntity<Review> updateReview(@PathVariable Long id, @RequestBody ReviewDTO reviewDTO){
         Review review = reviewService.updateReview(id, reviewDTO);
         return ResponseEntity.ok(review);
     }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteReview(@PathVariable Long id, @RequestBody Review review) {
@@ -92,9 +56,6 @@ public class ReviewController {
         reviewRepository.delete(review1);
         return ResponseEntity.noContent().build();
     }
-    
-    
-    
     
 }
 
