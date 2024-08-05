@@ -1,26 +1,26 @@
 import axios from "axios";
 
-export function calculateAverageRating(campgroundId) {
-    let resultArray = [];
-    let ratingArray= [];
+const calculateAverageRating = async (campgroundId) => {
+        let resultArray = [];
+        let ratingArray = [];
 
-    //axios request to get all reviews
-    const loadReviews = async () => {
-        const result = await axios.get("http://localhost:8080/review/getAll");
-        console.log("reviews loaded");
-        resultArray.push(result.data);
+         //axios request to get all reviews
+        const result = await axios.get(`http://localhost:8080/campground/${campgroundId}`);
+        // pushes result reviews to array
+        resultArray.push(result.data.reviews);
+        
+        // loops over result array, pushing rating to new array
+        for (let i=0; i <= resultArray.length; i++) {
+            ratingArray.push(resultArray[0][i].rating);
+        }
+
+        // calculates sum of ratingArray
+        let sum = 0;
+        for (let i = 0; i < ratingArray.length; i++ ) {
+            sum += ratingArray[i];
+          }
+        
+        let averageRating = sum / ratingArray.length;
+        return averageRating;
     }
 
-    //iterates through response. if id matches campgroundId, push rating to ratingArray
-    async function findAverage() {
-        await loadReviews();
-        console.log(resultArray[0][0].campground);
-    }
-    //add all items in array, divide by ratingArray.length
-
-    //return average campground rating
-    findAverage();
-    return "averageRating";
-}
-
-calculateAverageRating(1);
