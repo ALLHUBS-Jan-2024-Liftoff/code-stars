@@ -1,5 +1,6 @@
 package org.codestars.tenttalk_api.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -19,7 +20,7 @@ public class Review extends AbstractEntity {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "campground_id")
-    @JsonManagedReference
+    @JsonBackReference
     private Campground campground;
 
     @ManyToOne(fetch = FetchType.EAGER)
