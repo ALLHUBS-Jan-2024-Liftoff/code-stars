@@ -15,7 +15,6 @@ export default function DisplayReview({id}) {
   //gets review data by id via axios when review is loaded
   const loadReview = async () => {
     const result = await axios.get(`http://localhost:8080/review/${id}`);
-    console.log(result.data);
     setReview(result.data); 
 }
 
