@@ -33,8 +33,10 @@ export function Campground() {
     <div>
         <Navbar />
         <ViewCampground />
-        <DisplayRating rating={ campground.rating } size={36} />
-        <p>({campground.rating})</p> 
+        <div>
+            <h3>Average Rating: {(Math.round(campground.rating*10))/10 }</h3>
+            <DisplayRating rating={ campground.rating } size={36} />
+        </div>
         <Share />
         <DisplayAllReviews campgroundId={ id }/>
     </div>

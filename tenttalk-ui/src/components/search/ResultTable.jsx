@@ -37,7 +37,7 @@ export default function ResultTable() {
                         return (
                         <tr key={campground.id}>
                             <td>{campground.name}</td>
-                            <td> <DisplayRating rating={campground.rating} size={20} /> ({campground.rating}) </td>
+                            <td> <DisplayRating rating={campground.rating} size={20} /> </td>
                             <td>
                                 <Link
                                     className="btn btn-primary"
