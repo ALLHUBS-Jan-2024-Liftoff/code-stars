@@ -51,11 +51,14 @@ public class ReviewService {
     }
 
     @Transactional
-    public Campground updateAverageRating (Campground campground) {
+    public Campground updateAverageRating (Campground campground, Review newReview) {
         // get all ratings for campground
         List<Review> reviews = campground.getReviews();
 
-        // calculate average of ratings
+        // add new review to reviews list
+        reviews.add(newReview);
+
+        // calculate average of current ratings
         Double ratingSum = 0.0;
         for (Review review : reviews) {
             ratingSum = ratingSum + review.getRating();
