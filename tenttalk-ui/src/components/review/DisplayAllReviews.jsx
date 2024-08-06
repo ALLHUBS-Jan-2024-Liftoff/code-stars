@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DisplayReview from './DisplayReview'
-import DisplayAverageRating from '../campground/DisplayAverageRating';
 
 export function DisplayAllReviews({campgroundId}) {
 
@@ -17,7 +16,6 @@ export function DisplayAllReviews({campgroundId}) {
     const loadAllReviews = async () => {
         try {
             const result = await axios.get(`http://localhost:8080/campground/${campgroundId}`);
-            console.log(result.data.reviews);
             setReviews(result.data.reviews);  
         } catch (error) {
             console.error('Error fetching reviews:', error);
@@ -30,8 +28,6 @@ export function DisplayAllReviews({campgroundId}) {
 
   return (
     <div>
-        <h3>Average Rating:</h3>
-        <DisplayAverageRating reviewArray={reviews} size={48}/>
         {listAllReviews}
     </div>
   )

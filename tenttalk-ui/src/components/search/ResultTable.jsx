@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { DisplayRating } from '../review/DisplayRating';
 
 export default function ResultTable() {
   
@@ -36,7 +37,7 @@ export default function ResultTable() {
                         return (
                         <tr key={campground.id}>
                             <td>{campground.name}</td>
-                            <td>{campground.rating}</td>
+                            <td> <DisplayRating rating={campground.rating} size={20} /> ({campground.rating}) </td>
                             <td>
                                 <Link
                                     className="btn btn-primary"
