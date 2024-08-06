@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ReviewService {
 
@@ -44,6 +48,24 @@ public class ReviewService {
             review.setCampground(campground);
         }
         return reviewRepository.save(review);
+    }
+
+    @Transactional
+    public Campground updateAverageRating (Campground campground) {
+        // get all ratings for campground
+        List<Review> reviews = campground.getReviews();
+
+        // calculate average of ratings
+        Double ratingSum = 0.0;
+        for (Review review : reviews) {
+            ratingSum = ratingSum + review.getRating();
+        }
+        Double ratingAverage = ratingSum / reviews.toArray().length;
+
+        // update campground.rating with new average
+        campground.setRating(ratingAverage);
+
+        return campgroundRepository.save(campground);
     }
 
 }

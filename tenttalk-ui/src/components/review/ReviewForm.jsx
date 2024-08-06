@@ -25,7 +25,7 @@ export default function ReviewForm() {
         event.preventDefault();
         await axios.post("http://localhost:8080/review/add", {
             "campgroundId": campground,
-            "rating": rating,
+            "rating": starRating,
             "feedback": feedback
         });
         navigate("/campground");
