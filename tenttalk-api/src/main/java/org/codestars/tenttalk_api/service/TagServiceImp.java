@@ -4,7 +4,7 @@ import org.codestars.tenttalk_api.models.Tag;
 import org.codestars.tenttalk_api.models.data.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.util.List;
 
 @Service
 public class TagServiceImp implements TagService {
@@ -16,4 +16,14 @@ public class TagServiceImp implements TagService {
         return tagRepository.save(tag);
     }
 
+    @Override
+    public Tag findByName(String name) {
+        return tagRepository.findByName(name);
+    }
+
+    @Override
+    public List<Tag> findAll() {
+        return tagRepository.findAll();
+    }
 }
+
