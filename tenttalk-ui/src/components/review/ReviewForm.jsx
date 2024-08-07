@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { StarInput } from './StarInput';
 
 export default function ReviewForm() {
+
+    const [starRating, setStarRating] = useState(0)
 
     const [review, setReview] = useState({
         campground: "",
@@ -22,7 +25,7 @@ export default function ReviewForm() {
         event.preventDefault();
         await axios.post("http://localhost:8080/review/add", {
             "campgroundId": campground,
-            "rating": rating,
+            "rating": starRating,
             "feedback": feedback
         });
         navigate("/campground");
@@ -43,21 +46,7 @@ export default function ReviewForm() {
                 />
             </div>
 
-            <div className="form-group">
-                <label htmlFor="rating">Rating</label>
-                <select
-                    name="rating"
-                    id="rating"
-                    value={rating}
-                    onChange={(e)=>onInputChange(e)}
-                >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-            </div>
+            < StarInput starRating={starRating} setStarRating={setStarRating} />
             
             <div className="form-group">
                 <label htmlFor="feedback">Review</label> <br />
