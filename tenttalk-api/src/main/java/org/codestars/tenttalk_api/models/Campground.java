@@ -15,7 +15,7 @@ public class Campground extends AbstractEntity{
     private String address;
     private String website;
     private String placeId;
-    private int rating;
+    private Double rating;
 
     @OneToMany(mappedBy = "campground", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
@@ -28,7 +28,7 @@ public class Campground extends AbstractEntity{
 
 
 
-    public Campground(String name, String address, String website, String placeId, int rating, List<Review> reviews, List<Tag> tags) {
+    public Campground(String name, String address, String website, String placeId, Double rating, List<Review> reviews, List<Tag> tags) {
         this.name = name;
         this.address = address;
         this.website = website;
@@ -72,11 +72,11 @@ public class Campground extends AbstractEntity{
         this.placeId = placeId;
     }
 
-    public int getRating() {
+    public Double getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(Double rating) {
         this.rating = rating;
     }
 
