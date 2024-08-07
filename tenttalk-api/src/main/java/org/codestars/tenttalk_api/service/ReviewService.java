@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class ReviewService {
 
     @Autowired
@@ -21,7 +22,7 @@ public class ReviewService {
     @Autowired
     CampgroundRepository campgroundRepository;
 
-    @Transactional
+
     public Review addReview(ReviewDTO reviewDTO) {
 
         Campground campground = campgroundRepository.findById(reviewDTO.getCampgroundId())
@@ -34,7 +35,7 @@ public class ReviewService {
         return reviewRepository.save(review);
     }
 
-    @Transactional
+
     public Review updateReview (Long id, ReviewDTO reviewDTO){
         Review review = reviewRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Review not found"));
@@ -50,7 +51,7 @@ public class ReviewService {
         return reviewRepository.save(review);
     }
 
-    @Transactional
+
     public Campground updateAverageRating (Campground campground, Review newReview) {
         // get all ratings for campground
         List<Review> reviews = campground.getReviews();
@@ -71,4 +72,16 @@ public class ReviewService {
         return campgroundRepository.save(campground);
     }
 
+
+    public void deleteReviewById(Long id) {
+        Review review = reviewRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Campground not found"));
+
+        Campground campground = review.getCampground();
+        if (campground != null) {
+            campground.getReviews().remove(review);
+            campgroundRepository.save(campground);
+        }
+        reviewRepository.delete(review);
+    }
 }
