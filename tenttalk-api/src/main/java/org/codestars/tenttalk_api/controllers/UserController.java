@@ -1,13 +1,17 @@
 package org.codestars.tenttalk_api.controllers;
 
+import org.codestars.tenttalk_api.models.Campground;
 import org.codestars.tenttalk_api.models.User;
 import org.codestars.tenttalk_api.models.data.ReviewRepository;
 import org.codestars.tenttalk_api.models.data.UserRepository;
 import org.codestars.tenttalk_api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
@@ -39,5 +43,14 @@ public class UserController {
 
     @GetMapping("/getAll")
     public List<User> getAllUsers() {return userRepository.findAll();}
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<User>> getUserById(@PathVariable int id) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        return ResponseEntity.ok(user);
+    }
 }
 
