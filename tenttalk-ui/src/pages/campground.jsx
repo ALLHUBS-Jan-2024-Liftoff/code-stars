@@ -7,6 +7,7 @@ import { DisplayRating } from "../components/review/DisplayRating";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import CampgroundPhoto from "../components/campground/CampgroundPhoto";
 
 
 
@@ -33,6 +34,7 @@ export function Campground() {
     <div>
         <Navbar />
         <ViewCampground />
+        <CampgroundPhoto campgroundName={"Gateway Arch"}/>
         <div>
             <h3>Average Rating: {(Math.round(campground.rating*10))/10 }</h3>
             <DisplayRating rating={ campground.rating } size={36} />
