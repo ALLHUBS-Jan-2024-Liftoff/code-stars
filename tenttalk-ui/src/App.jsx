@@ -8,6 +8,10 @@ import { Login } from './pages/login'
 import { Register } from './pages/register'
 import { Account } from './pages/account'
 import { CreateCampground } from './pages/createcampground'
+
+// editing review
+// import UpdateReview from './Components/Review/UpdateReview';
+
 // import ViewCampground from './components/ViewCampground'; 
 
 
@@ -24,6 +28,11 @@ function App() {
         <Route path="/account" element={<Account/>} />
         <Route path="/create-campground" element={<CreateCampground/>} />
         <Route path="/campground/:id" element={<Campground />} /> 
+
+        {/* editing review */}
+        {/* <Route path="/update-review/:id" element={<UpdateReviewForm />} />
+        <Route path="/review/:id" element={<DisplayReview />} /> */}
+
       </Routes>
     </HashRouter>
   )

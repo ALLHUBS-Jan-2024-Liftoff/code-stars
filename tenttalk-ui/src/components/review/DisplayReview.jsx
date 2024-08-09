@@ -26,6 +26,12 @@ export default function DisplayReview({id}) {
       </div>
       <div className="card-body">
         <p>"{review.feedback}"</p>
+
+        {/* edit review component*/}
+        {/* <button className="btn btn-primary" onClick={handleUpdateClick}>
+          Edit Review
+        </button> */}
+
       </div>
     </div>
   )
