@@ -1,8 +1,6 @@
 package org.codestars.tenttalk_api.controllers;
 
 import org.codestars.tenttalk_api.models.User;
-import org.codestars.tenttalk_api.models.User;
-import org.codestars.tenttalk_api.models.data.ReviewRepository;
 import org.codestars.tenttalk_api.models.data.UserRepository;
 import org.codestars.tenttalk_api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +60,15 @@ public class UserController {
         user1.setUsername(user.getUsername());
 
         return userRepository.save(user1);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteUserById(@PathVariable int id, @RequestBody User user) {
+        User user1 = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        userRepository.delete(user1);
+        return ResponseEntity.noContent().build();
     }
 }
 
