@@ -4,6 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class User extends AbstractEntity {
     @NotBlank(message = "Email is required")
@@ -16,12 +19,15 @@ public class User extends AbstractEntity {
     @NotBlank(message = "Password is required")
     private String password;
 
+    private List<Favorite> favoriteCamps = new ArrayList<>();
+
     public User() {}
 
-    public User(String email, String username, String password) {
+    public User(String email, String username, String password, List<Favorite> favoriteCamps) {
         this.email = email;
         this.username = username;
         this.password = password;
+        this.favoriteCamps = favoriteCamps;
     }
 
     public String getEmail() {
@@ -46,6 +52,14 @@ public class User extends AbstractEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Favorite> getFavoriteCamps() {
+        return favoriteCamps;
+    }
+
+    public void setFavoriteCamps(List<Favorite> favoriteCamps) {
+        this.favoriteCamps = favoriteCamps;
     }
 }
 
