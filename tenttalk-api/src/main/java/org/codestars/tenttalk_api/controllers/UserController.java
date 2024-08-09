@@ -1,14 +1,22 @@
 package org.codestars.tenttalk_api.controllers;
 
 import org.codestars.tenttalk_api.models.User;
+import org.codestars.tenttalk_api.models.data.ReviewRepository;
+import org.codestars.tenttalk_api.models.data.UserRepository;
 import org.codestars.tenttalk_api.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
 @CrossOrigin(origins = "http://localhost:5173")
 public class UserController {
+    @Autowired
     private final UserService userService;
+    @Autowired
+    private UserRepository userRepository;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -28,5 +36,8 @@ public class UserController {
             return null;  // Failed login
         }
     }
+
+    @GetMapping("/getAll")
+    public List<User> getAllUsers() {return userRepository.findAll();}
 }
 
