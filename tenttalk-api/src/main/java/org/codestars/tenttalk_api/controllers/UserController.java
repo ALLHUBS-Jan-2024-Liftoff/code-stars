@@ -1,6 +1,6 @@
 package org.codestars.tenttalk_api.controllers;
 
-import org.codestars.tenttalk_api.models.Campground;
+import org.codestars.tenttalk_api.models.User;
 import org.codestars.tenttalk_api.models.User;
 import org.codestars.tenttalk_api.models.data.ReviewRepository;
 import org.codestars.tenttalk_api.models.data.UserRepository;
@@ -51,6 +51,17 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
         return ResponseEntity.ok(user);
+    }
+
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable int id, @RequestBody User user) {
+        User user1 = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        user1.setEmail(user.getEmail());
+        user1.setPassword(user.getPassword());
+        user1.setUsername(user.getUsername());
+
+        return userRepository.save(user1);
     }
 }
 
