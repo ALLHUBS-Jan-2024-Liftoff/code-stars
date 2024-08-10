@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useEffect } from 'react';
 
 const API_KEY = "";
 
 export default function CampgroundPhoto({searchQuery}) {
+
+  const [photoURL, setPhotoURL] = useState();
 
   useEffect(() => {
     getPhoto();
@@ -32,7 +34,13 @@ export default function CampgroundPhoto({searchQuery}) {
       let photoName = postJson.places[0].photos[0].name;
       
       // fetches getResponse
-      const getResponse = await fetch(new Request(`https://places.googleapis.com/v1/${photoName}/media?key=${API_KEY}&maxWidthPx=400`));
+      const getResponse = await fetch(new Request(`https://places.googleapis.com/v1/${photoName}/media?key=${API_KEY}&maxWidthPx=400`))
+        // extracts image URL from blob and sets state of photoURL
+        .then(getResponse => getResponse.blob())
+        .then((blob) => {
+          setPhotoURL(URL.createObjectURL(blob));
+        })
+      
 
       // throws error if either response isn't 2xx OK
       if (!postResponse.ok) {
@@ -51,6 +59,8 @@ export default function CampgroundPhoto({searchQuery}) {
   }
 
   return (
-    <div>CampgroundPhoto</div>
+    <div>
+      <img src={photoURL} alt="Campground" />
+    </div>
   )
 }
