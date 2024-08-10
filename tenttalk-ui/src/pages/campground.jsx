@@ -34,7 +34,7 @@ export function Campground() {
     <div>
         <Navbar />
         <ViewCampground />
-        <CampgroundPhoto campgroundName={"Gateway Arch"}/>
+        <CampgroundPhoto searchQuery={"Gateway Arch"}/>
         <div>
             <h3>Average Rating: {(Math.round(campground.rating*10))/10 }</h3>
             <DisplayRating rating={ campground.rating } size={36} />

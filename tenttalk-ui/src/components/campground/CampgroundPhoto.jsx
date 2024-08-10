@@ -1,6 +1,7 @@
 import React from 'react'
-import axios from 'axios'
 import { useEffect } from 'react';
+
+const API_KEY = "";
 
 export default function CampgroundPhoto({searchQuery}) {
 
@@ -10,17 +11,16 @@ export default function CampgroundPhoto({searchQuery}) {
 
   async function getPhoto() {
 
+
     //creates new instance of Request with url, method, headers, and body
     const postRequest = new Request("https://places.googleapis.com/v1/places:searchText", {
       method: "POST",
       headers: {
-        "X-Goog-Api-Key": "api key here",
+        "X-Goog-Api-Key": API_KEY,
         "X-Goog-FieldMask": "places.photos"
       },
       body: JSON.stringify({textQuery: `${searchQuery}`})
-    })
-
-    let photoName = "";
+    });
 
 
     try {
@@ -28,10 +28,19 @@ export default function CampgroundPhoto({searchQuery}) {
       const postResponse = await fetch(postRequest);
       const postJson = await postResponse.json();
 
-      console.log(postJson.places[0].photos[0]);
+      // sets photoName to photo name
+      let photoName = postJson.places[0].photos[0].name;
+      
+      // fetches getResponse
+      const getResponse = await fetch(new Request(`https://places.googleapis.com/v1/${photoName}/media?key=${API_KEY}&maxWidthPx=400`));
+
+      // throws error if either response isn't 2xx OK
       if (!postResponse.ok) {
         throw new Error(`Response status: ${postResponse.status}`);
       } 
+      if (!getResponse.ok) {
+        throw new Error(`Response status: ${getResponse.status}`);
+      }
     } catch (error) {
       console.error(error.message);
     }
