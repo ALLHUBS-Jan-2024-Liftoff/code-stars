@@ -10,8 +10,9 @@ import { Account } from './pages/account'
 import { CreateCampground } from './pages/createcampground'
 
 // editing review
-// import UpdateReview from './Components/Review/UpdateReview';
-
+// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// import UpdateReviewForm from './UpdateReviewForm';
+// import DisplayReview from './DisplayReview';
 // import ViewCampground from './components/ViewCampground'; 
 
 
@@ -30,7 +31,7 @@ function App() {
         <Route path="/campground/:id" element={<Campground />} /> 
 
         {/* editing review */}
-        {/* <Route path="/update-review/:id" element={<UpdateReviewForm />} />
+        {/* <Route path="/review/update/:id" element={<UpdateReviewForm />} />
         <Route path="/review/:id" element={<DisplayReview />} /> */}
 
       </Routes>

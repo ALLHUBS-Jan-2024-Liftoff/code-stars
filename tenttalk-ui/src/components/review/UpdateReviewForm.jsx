@@ -6,9 +6,7 @@ import { StarInput } from './StarInput';
 
 
 export default function UpdateReviewForm() {
-
     const {id}=useParams()
-
     const [starRating, setStarRating] = useState(0)
 
     const [review, setReview] = useState({
@@ -25,26 +23,45 @@ export default function UpdateReviewForm() {
 
 
     useEffect(() => {
-        loadReview();
-    }, []);
+        if (id) {
+            loadReview();
+        }
+    }, [id]);
 
     const navigate = useNavigate();
 
+
+    // added error catches
+
     const onSubmit = async (event) => {
         event.preventDefault();
-        await axios.put(`http://localhost:8080/review/add/${id}`, {
-            "campgroundId": campground,
-            "rating": starRating,
-            "feedback": feedback
-        });
-        navigate("/campground");
+        try {
+            if (id) {
+                // Update existing review
+                const response = await axios.put(`http://localhost:8080/review/${id}`, {
+                    campgroundId: campground,
+                    rating: starRating,
+                    feedback: feedback
+                });
+                console.log('Update response:', response.data);
+                navigate("/campground");  // Redirect after successful update
+            }
+        } catch (error) {
+            console.error('Error updating review:', error);
+            alert('Failed to update the review. Please try again.');
+        }
     };
 
-    
+    // added error catches
 
     const loadReview = async () => {
-        const result = await axios.get(`http://localhost:8080/review/add/${id}`);
-        setReview(result.data);
+        try {
+            const result = await axios.get(`http://localhost:8080/review/${id}`);
+            setReview(result.data);
+            setStarRating(result.data.rating); // Pre-fill the star rating
+        } catch (error) {
+            console.error('Error loading review:', error);
+        }
     };
 
 
@@ -80,7 +97,7 @@ export default function UpdateReviewForm() {
                 </textarea>
             </div>
             
-                <button type="submit" className="btn btn-primary">Submit Review Changes</button>
+                <button type="submit" className="btn btn-primary">Submit Changes</button>
             
             </form>
     </div>
