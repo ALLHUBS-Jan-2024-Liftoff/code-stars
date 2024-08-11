@@ -5,22 +5,23 @@ import { StarInput } from './StarInput';
 
 
 
-export default function UpdateReviewForm() {
-    const {id}=useParams()
-    const [starRating, setStarRating] = useState(0)
-
+export default function UpdateReviewForm({id}) {
+    // const { id } = useParams();
+    const [starRating, setStarRating] = useState(0);
     const [review, setReview] = useState({
         campground: "",
         rating: "",
         feedback: "",
-    })
+    });
 
-    const{campground, rating, feedback} = review;
+    const{ campground, rating, feedback}  = review;
 
     const onInputChange =(e)=> {
         setReview({...review,[e.target.name]:e.target.value})
     }
 
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (id) {
@@ -28,16 +29,17 @@ export default function UpdateReviewForm() {
         }
     }, [id]);
 
-    const navigate = useNavigate();
 
 
-    // added error catches
+    // onSubmit function sends PUT request to update review
+
+
+    //pass in id of review that was opened
 
     const onSubmit = async (event) => {
         event.preventDefault();
         try {
             if (id) {
-                // Update existing review
                 const response = await axios.put(`http://localhost:8080/review/${id}`, {
                     campgroundId: campground,
                     rating: starRating,
@@ -47,10 +49,15 @@ export default function UpdateReviewForm() {
                 navigate("/campground");  // Redirect after successful update
             }
         } catch (error) {
-            console.error('Error updating review:', error);
+            console.error('Error updating review:', {
+                message: error.message,
+                response: error.response?.data,
+                status: error.response?.status
+            });
             alert('Failed to update the review. Please try again.');
         }
     };
+    
 
     // added error catches
 
@@ -58,7 +65,7 @@ export default function UpdateReviewForm() {
         try {
             const result = await axios.get(`http://localhost:8080/review/${id}`);
             setReview(result.data);
-            setStarRating(result.data.rating); // Pre-fill the star rating
+            setStarRating(result.data.rating); 
         } catch (error) {
             console.error('Error loading review:', error);
         }
@@ -66,7 +73,7 @@ export default function UpdateReviewForm() {
 
 
 
-  return (
+return (
     <div>
         <form onSubmit={(event) => onSubmit(event)}>
             <div className="form-group">
@@ -101,5 +108,5 @@ export default function UpdateReviewForm() {
             
             </form>
     </div>
-  )
+)
 }
