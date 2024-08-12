@@ -46,7 +46,7 @@ export default function UpdateReviewForm({id}) {
                     feedback: feedback
                 });
                 console.log('Update response:', response.data);
-                navigate(`/campground/${reviewId}`);  // Redirect to the specific campground page
+                navigate(`/campground/${id}`);  // Redirect to the specific campground page
             }
         } catch (error) {
             console.error('Error updating review:', {
