@@ -6,9 +6,9 @@ import jakarta.persistence.Entity;
 @Entity
 public class Favorite extends AbstractEntity {
 
-private Campground campground;
+    private Campground campground;
 
-private User user;
+    private User user;
 
     public Favorite(Campground campground, User user) {
         this.campground = campground;
@@ -33,6 +33,6 @@ private User user;
         this.user = user;
     }
 
-    //spent 8.5 hrs trying to make favorites abstract and failed t(-_-)t
+    //spent 8.5 hrs trying to make favorites polymorphic and failed t(-_-)t
     //Doing it the boring way.
 }
