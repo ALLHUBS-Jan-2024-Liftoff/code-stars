@@ -2,6 +2,7 @@ package org.codestars.tenttalk_api.controllers;
 
 import org.codestars.tenttalk_api.dto.ReviewDTO;
 import org.codestars.tenttalk_api.models.Review;
+import org.codestars.tenttalk_api.models.data.ReviewRepository;
 import org.codestars.tenttalk_api.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,8 @@ public class ReviewController {
 
     @Autowired
     private ReviewService reviewService;
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     @PostMapping("/add")
     public ResponseEntity<Review> addReview(@RequestBody ReviewDTO reviewDTO) {

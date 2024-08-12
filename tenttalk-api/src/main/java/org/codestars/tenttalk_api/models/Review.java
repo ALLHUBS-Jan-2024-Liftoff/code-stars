@@ -1,6 +1,7 @@
 package org.codestars.tenttalk_api.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class Review extends AbstractEntity {
             joinColumns = @JoinColumn(name = "review_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
+
     private List<Tag> tags;
 
     public Review() {}
