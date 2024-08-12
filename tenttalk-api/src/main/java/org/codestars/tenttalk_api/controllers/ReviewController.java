@@ -38,11 +38,11 @@ public class ReviewController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Review>> getReviewById(@PathVariable Long id) {
-        Optional<Review> review = reviewService.findById(id);
+        Optional<Review> review = reviewRepository.findById(id);
         if (review.isEmpty()) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
-        return new ResponseEntity<>(review, HttpStatus.OK);
+        return ResponseEntity.ok(review);
     }
 
     @PutMapping("/{id}")
