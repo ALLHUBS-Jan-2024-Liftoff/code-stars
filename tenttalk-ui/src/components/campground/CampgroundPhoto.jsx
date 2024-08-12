@@ -7,12 +7,14 @@ export default function CampgroundPhoto({searchQuery, imageHeight}) {
 
   const [photoURL, setPhotoURL] = useState();
 
+
   useEffect(() => {
     getPhoto();
-  },[]);
+  },[searchQuery]);
+
+
 
   async function getPhoto() {
-
 
     //creates new instance of Request with url, method, headers, and body
     const postRequest = new Request("https://places.googleapis.com/v1/places:searchText", {
