@@ -47,7 +47,7 @@ export default function DisplayReview({id}) {
           </>
         ) : (
           // Render the UpdateReviewForm component when in edit mode
-          <UpdateReviewForm reviewId={id} reviewData={review} />
+          <UpdateReviewForm id={id} reviewData={review} />
         )}
       </div>
     </div>
