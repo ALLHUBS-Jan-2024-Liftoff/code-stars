@@ -58,3 +58,6 @@ bin/
 **/build/
 **/.eslintcache
 **/node_modules/
+
+### Environment Variables ###
+*.env
