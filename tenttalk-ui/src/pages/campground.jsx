@@ -8,6 +8,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import CampgroundPhoto from "../components/campground/CampgroundPhoto";
+import ReviewButton from "../components/review/ReviewButton";
 
 
 
@@ -41,6 +42,7 @@ export function Campground() {
             <DisplayRating rating={ campground.rating } size={36} />
         </div>
         <Share />
+        <ReviewButton campgroundId={ id }/>
         <DisplayAllReviews campgroundId={ id }/>
     </div>
     );

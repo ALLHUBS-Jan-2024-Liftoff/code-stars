@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { StarInput } from './StarInput';
 
-export default function ReviewForm() {
+export default function ReviewForm({campgroundId}) {
 
     const [starRating, setStarRating] = useState(0)
 
@@ -36,11 +36,11 @@ export default function ReviewForm() {
             });
     }, []);
     
-
+    // sends review to backend
     const onSubmit = async (event) => {
         event.preventDefault();
         await axios.post("http://localhost:8080/review/add", {
-            "campgroundId": campground,
+            "campgroundId": campgroundId.id,
             "rating": starRating,
             "feedback": feedback,
             "tags": tags
@@ -60,7 +60,7 @@ export default function ReviewForm() {
   return (
     <div>
         <form onSubmit={(event) => onSubmit(event)}>
-            <div className="form-group">
+            {/* <div className="form-group">
                 <label htmlFor="campground">Campground ID</label>
                 <input 
                     type="text" 
@@ -70,7 +70,7 @@ export default function ReviewForm() {
                     onChange={(e)=>onInputChange(e)}
                     className="form-control" 
                 />
-            </div>
+            </div> */}
 
             < StarInput starRating={starRating} setStarRating={setStarRating} />
             
