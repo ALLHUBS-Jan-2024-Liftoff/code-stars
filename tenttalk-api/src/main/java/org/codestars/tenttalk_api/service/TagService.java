@@ -1,13 +1,13 @@
 package org.codestars.tenttalk_api.service;
 
 import org.codestars.tenttalk_api.models.Tag;
-import org.codestars.tenttalk_api.models.User;
+import java.util.List;
 
 public interface TagService {
-
-    public Tag saveTag(Tag tag);
-
-
-
-
+    Tag saveTag(Tag tag);
+    Tag findByName(String name);
+    List<Tag> getAllTags();
 }
+
+
+

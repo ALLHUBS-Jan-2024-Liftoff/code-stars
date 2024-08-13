@@ -8,6 +8,11 @@ import { Login } from './pages/login'
 import { Register } from './pages/register'
 import { Account } from './pages/account'
 import { CreateCampground } from './pages/createcampground'
+
+// editing review
+// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// import UpdateReviewForm from './UpdateReviewForm';
+// import DisplayReview from './DisplayReview';
 // import ViewCampground from './components/ViewCampground'; 
 
 
@@ -24,6 +29,11 @@ function App() {
         <Route path="/account" element={<Account/>} />
         <Route path="/create-campground" element={<CreateCampground/>} />
         <Route path="/campground/:id" element={<Campground />} /> 
+
+        {/* editing review */}
+        {/* <Route path="/review/update/:id" element={<UpdateReviewForm />} />
+        <Route path="/review/:id" element={<DisplayReview />} /> */}
+
       </Routes>
     </HashRouter>
   )
