@@ -45,7 +45,7 @@ export default function ReviewForm({campgroundId}) {
             "feedback": feedback,
             "tags": tags
         });
-        navigate("/campground");
+        navigate(`/campground/${campgroundId.id}`);
     };
 
     const handleCheckboxChange = (event) => {
