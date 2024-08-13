@@ -1,6 +1,7 @@
 package org.codestars.tenttalk_api.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -9,7 +10,6 @@ import java.util.List;
 public class Review extends AbstractEntity {
 
     private String feedback;
-
     private int rating;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -22,12 +22,17 @@ public class Review extends AbstractEntity {
     private User user;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "comments_tags")
+    @JoinTable(
+            name = "review_tags",
+            joinColumns = @JoinColumn(name = "review_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+
     private List<Tag> tags;
 
+    public Review() {}
 
     public Review(String feedback, int rating, Campground campground, User user, List<Tag> tags) {
-
         this.feedback = feedback;
         this.rating = rating;
         this.campground = campground;
@@ -35,14 +40,12 @@ public class Review extends AbstractEntity {
         this.tags = tags;
     }
 
-    public Review(){};
+    public String getFeedback() {
+        return feedback;
+    }
 
     public void setFeedback(String feedback) {
         this.feedback = feedback;
-    }
-
-    public String getFeedback() {
-        return feedback;
     }
 
     public int getRating() {
@@ -77,3 +80,4 @@ public class Review extends AbstractEntity {
         this.tags = tags;
     }
 }
+
