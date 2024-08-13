@@ -7,6 +7,7 @@ export default function SavePDF() {
 
 
     return (
-        <button onClick={() => generatePDF(getTargetElement, {filename: 'campground.pdf'})}>Save as PDF</button>
+        <button onClick={() => generatePDF(getTargetElement, {filename: 'campground.pdf'})}
+        className="btn btn-primary">Save as PDF</button>
     )
 }
