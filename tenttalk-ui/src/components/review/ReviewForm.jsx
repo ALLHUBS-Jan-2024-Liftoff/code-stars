@@ -5,7 +5,7 @@ import { StarInput } from './StarInput';
 
 export default function ReviewForm({campgroundId}) {
 
-    const [starRating, setStarRating] = useState(0)
+    const [starRating, setStarRating] = useState(1)
 
     const [review, setReview] = useState({
         campground: "",
@@ -71,7 +71,7 @@ export default function ReviewForm({campgroundId}) {
                     className="form-control" 
                 />
             </div> */}
-
+            <label>Rating</label>
             < StarInput starRating={starRating} setStarRating={setStarRating} />
             
             <div className="form-group">
