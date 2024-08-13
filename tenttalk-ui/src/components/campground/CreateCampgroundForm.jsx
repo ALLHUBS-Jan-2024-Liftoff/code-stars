@@ -13,7 +13,7 @@ export default function CreateCampgroundForm() {
         address: "",
         website: ""
     })
-
+ 
     const{name, address, website} = campground;
 
     const onInputChange=(e)=> {
