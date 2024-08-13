@@ -1,5 +1,6 @@
 package org.codestars.tenttalk_api.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToMany;
@@ -10,9 +11,11 @@ public class Tag extends AbstractEntity {
 
     private String name;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "tags", fetch = FetchType.EAGER)
     private List<Review> reviews;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "tags", fetch = FetchType.EAGER)
     private List<Campground> campgrounds;
 
