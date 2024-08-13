@@ -3,10 +3,10 @@ import { useRef } from 'react'
 import generatePDF from 'react-to-pdf'
 
 export default function SavePDF() {
-    const targetRef = useRef();
+    const getTargetElement = () => document.getElementById('pdf');
 
 
     return (
-        <div>SavePDF</div>
+        <button onClick={() => generatePDF(getTargetElement, {filename: 'campground.pdf'})}>Save as PDF</button>
     )
 }
