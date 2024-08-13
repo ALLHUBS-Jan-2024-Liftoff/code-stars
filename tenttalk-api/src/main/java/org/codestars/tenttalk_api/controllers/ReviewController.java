@@ -25,6 +25,7 @@ public class ReviewController {
     @PostMapping("/add")
     public ResponseEntity<Review> addReview(@RequestBody ReviewDTO reviewDTO) {
         Review review = reviewService.addReview(reviewDTO);
+        reviewService.updateAverageRating(review.getCampground(), review);
         return ResponseEntity.ok(review);
     }
 
