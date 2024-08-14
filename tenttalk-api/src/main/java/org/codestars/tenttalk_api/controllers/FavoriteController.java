@@ -31,9 +31,15 @@ public class FavoriteController {
         return ResponseEntity.ok(favorites);
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<Void> removeFavorite(@RequestParam int userId, @RequestParam Long campgroundId) {
-        favoriteService.removeFavorite(userId, campgroundId);
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> removeFavorite(@RequestParam int userId, @RequestParam Long campgroundId) {
+//        favoriteService.removeFavorite(userId, campgroundId);
+//        return ResponseEntity.noContent().build();
+//    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteFavoriteById(@PathVariable Long id) {
+        favoriteService.removeByFavoriteId(id);
         return ResponseEntity.noContent().build();
     }
 
