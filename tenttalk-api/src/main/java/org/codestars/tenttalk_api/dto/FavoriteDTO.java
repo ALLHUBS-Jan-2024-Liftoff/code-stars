@@ -7,39 +7,30 @@ import java.util.List;
 
 public class FavoriteDTO {
 
-    private Long id;
-    private User user;
-    private List<Campground> favoriteCampgrounds;
+    private int userId;
+    private Long CampId;
 
-    public FavoriteDTO(Long id, User user, List<Campground> favoriteCampgrounds) {
-        this.id = id;
-        this.user = user;
-        this.favoriteCampgrounds = favoriteCampgrounds;
+
+    public FavoriteDTO(int userId, Long campId) {
+        this.userId = userId;
+        CampId = campId;
     }
 
     public FavoriteDTO(){}
 
-    public Long getId() {
-        return id;
+    public Long getCampId() {
+        return CampId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCampId(Long campId) {
+        CampId = campId;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public List<Campground> getFavoriteCampgrounds() {
-        return favoriteCampgrounds;
-    }
-
-    public void setFavoriteCampgrounds(List<Campground> favoriteCampgrounds) {
-        this.favoriteCampgrounds = favoriteCampgrounds;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

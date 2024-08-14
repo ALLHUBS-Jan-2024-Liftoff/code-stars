@@ -1,28 +1,32 @@
 package org.codestars.tenttalk_api.models;
 
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Favorite extends AbstractEntity {
+    @ManyToOne
+    @JoinColumn(name = "campground_id")
+    private Campground campgrounds;
 
-    private Campground campground;
-
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
     public Favorite(Campground campground, User user) {
-        this.campground = campground;
+        this.campgrounds = campground;
         this.user = user;
     }
 
     public Favorite(){}
 
     public Campground getCampground() {
-        return campground;
+        return campgrounds;
     }
 
     public void setCampground(Campground campground) {
-        this.campground = campground;
+        this.campgrounds = campground;
     }
 
     public User getUser() {

@@ -1,6 +1,8 @@
 package org.codestars.tenttalk_api.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
@@ -19,7 +21,8 @@ public class User extends AbstractEntity {
     @NotBlank(message = "Password is required")
     private String password;
 
-    private List<Favorite> favoriteCampsites = new ArrayList<>();
+    @OneToMany
+    private List<Favorite> favoriteCampsites;
 
     public User() {}
 
@@ -28,6 +31,15 @@ public class User extends AbstractEntity {
         this.username = username;
         this.password = password;
         this.favoriteCampsites = favoriteCampsites;
+    }
+
+    public void addToFavorite(Favorite favorite){
+        favoriteCampsites.add(favorite);
+        favorite.setUser(this);
+    }
+
+    public void removeFromFavorite(Favorite favorite) {
+        favoriteCampsites.remove(favorite);
     }
 
     public String getEmail() {

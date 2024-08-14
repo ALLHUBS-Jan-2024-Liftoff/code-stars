@@ -22,7 +22,8 @@ public class Campground extends AbstractEntity{
     @JoinTable(name = "campground_tags", joinColumns = @JoinColumn(name = "campground_id"), inverseJoinColumns  = @JoinColumn(name= "tag_id"))
     private List<Tag> tags;
 
-
+    @ManyToOne
+    private Favorite favorite;
 
 
     public Campground(String name, String address, String website, String placeId, Double rating, List<Review> reviews, List<Tag> tags) {
