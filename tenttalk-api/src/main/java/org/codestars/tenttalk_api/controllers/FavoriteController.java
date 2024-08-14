@@ -1,9 +1,7 @@
 package org.codestars.tenttalk_api.controllers;
 
 import org.codestars.tenttalk_api.dto.FavoriteDTO;
-import org.codestars.tenttalk_api.models.Campground;
 import org.codestars.tenttalk_api.models.Favorite;
-import org.codestars.tenttalk_api.models.data.FavoriteRepository;
 import org.codestars.tenttalk_api.service.FavoriteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,11 +29,6 @@ public class FavoriteController {
         return ResponseEntity.ok(favorites);
     }
 
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Void> removeFavorite(@RequestParam int userId, @RequestParam Long campgroundId) {
-//        favoriteService.removeFavorite(userId, campgroundId);
-//        return ResponseEntity.noContent().build();
-//    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteFavoriteById(@PathVariable Long id) {

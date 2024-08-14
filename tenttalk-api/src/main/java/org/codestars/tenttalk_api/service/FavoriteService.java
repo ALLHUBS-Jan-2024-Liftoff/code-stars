@@ -42,15 +42,6 @@ public class FavoriteService {
         return favoriteRepository.findByUserId(userId);
     }
 
-//    public void removeFavorite(int userId, Long campgroundId) {
-//        User user = userRepository.findById(userId)
-//                .orElseThrow(() -> new RuntimeException("User not found"));
-//
-//        Campground campground = campgroundRepository.findById(campgroundId);
-//
-//        favoriteRepository.deleteByUserIdAndCampgroundId(userId, campgroundId);
-//
-//    }
     public void removeByFavoriteId(Long id) {
         Favorite favorite = favoriteRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Favorite not found"));
