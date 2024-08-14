@@ -43,10 +43,11 @@ export default function UpdateReviewForm({id}) {
                 const response = await axios.put(`http://localhost:8080/review/${id}`, {
                     campgroundId: campground,
                     rating: starRating,
-                    feedback: feedback
+                    feedback: feedback,
+                    tags: review.tags
                 });
                 console.log('Update response:', response.data);
-                navigate(`/campground/${id}`);  // Redirect to the specific campground page
+                window.location.reload();  // Reloads after submit
             }
         } catch (error) {
             console.error('Error updating review:', {
