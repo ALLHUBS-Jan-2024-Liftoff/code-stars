@@ -39,15 +39,13 @@ export default function UpdateReviewForm({id}) {
     const onSubmit = async (event) => {
         event.preventDefault();
 
-        // maps tags array to proper format for put request
-        let tagArray = review.tags.map((tag) => tag.name);
 
         try {
             if (id) {
                 const response = await axios.put(`http://localhost:8080/review/${id}`, {
                     "rating": starRating,
                     "feedback": feedback,
-                    "tags": review.tags.map((tag) => tag.name)
+                    "tags": review.tags.map((tag) => tag.name) // maps tag array to correct format
                 });
                 console.log('Update response:', response.data);
                 window.location.reload();  // Reloads after submit
