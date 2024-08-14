@@ -22,7 +22,7 @@ public class Campground extends AbstractEntity{
     @JoinTable(name = "campground_tags", joinColumns = @JoinColumn(name = "campground_id"), inverseJoinColumns  = @JoinColumn(name= "tag_id"))
     private List<Tag> tags;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Favorite favorite;
 
 

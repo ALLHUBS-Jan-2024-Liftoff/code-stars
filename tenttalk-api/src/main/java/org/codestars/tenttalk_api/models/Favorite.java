@@ -1,17 +1,20 @@
 package org.codestars.tenttalk_api.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
 public class Favorite extends AbstractEntity {
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "campground_id")
     private Campground campgrounds;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User user;
 
     public Favorite(Campground campground, User user) {

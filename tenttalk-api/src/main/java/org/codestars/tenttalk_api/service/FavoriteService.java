@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -42,8 +43,10 @@ public class FavoriteService {
         return favoriteRepository.findByUserId(userId);
     }
 
-    public void removeFavorite(Long id) {
-        favoriteRepository.deleteById(id);
+    public void removeFavorite(int userId, Long campgroundId) {
+
+        favoriteRepository.deleteByUserIdAndCampgroundId(userId, campgroundId);
+
     }
 
 }
