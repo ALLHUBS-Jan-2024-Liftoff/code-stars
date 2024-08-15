@@ -20,8 +20,13 @@ public class Campground extends AbstractEntity {
     private List<Review> reviews = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "campground_tags", joinColumns = @JoinColumn(name = "campground_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
-    private List<Tag> tags = new ArrayList<>();
+
+    @JoinTable(name = "campground_tags", joinColumns = @JoinColumn(name = "campground_id"), inverseJoinColumns  = @JoinColumn(name= "tag_id"))
+    private List<Tag> tags;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Favorite favorite;
+
 
     public Campground() {}
 
