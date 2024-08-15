@@ -1,11 +1,14 @@
 package org.codestars.tenttalk_api.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,12 +27,15 @@ public class User extends AbstractEntity {
     @JsonManagedReference
     private List<Favorite> favoriteCampsites;
 
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+
     public User() {}
 
-    public User(String email, String username, String password, List<Favorite> favoriteCampsites) {
+    public User(String email, String username, String password) {
         this.email = email;
         this.username = username;
-        this.password = password;
+        this.password = encoder.encode(password);
         this.favoriteCampsites = favoriteCampsites;
     }
 
@@ -63,7 +69,11 @@ public class User extends AbstractEntity {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = encoder.encode(password);
+    }
+
+    public boolean isMatchingPassword(String password) {
+        return encoder.matches(password, this.password);
     }
 
 //    public List<Favorite> getFavoriteCamps() {
