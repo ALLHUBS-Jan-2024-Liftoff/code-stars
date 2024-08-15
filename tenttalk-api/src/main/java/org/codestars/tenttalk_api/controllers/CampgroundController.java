@@ -53,8 +53,6 @@ public class CampgroundController {
         campground1.setReviews(campground.getReviews());
         campground1.setTags(campground.getTags());
 
-
-
         return campgroundRepository.save(campground1);
 
     }
