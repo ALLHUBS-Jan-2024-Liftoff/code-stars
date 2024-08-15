@@ -1,11 +1,10 @@
 // BearSafety.jsx
 import React from 'react';
 
-//change to correct tag name
-
 const BearSafety = ({ tags }) => {
-    if (!tags.includes('bears')) {
-        return null; // Don't render anything if 'bears' tag is not present
+
+    if (!Array.isArray(tags) || (!tags.includes('bears') && !tags.includes('bear'))) {
+        return null; // Don't render anything if 'bears' or 'bear' tag is not present
     }
 
     return (
@@ -20,3 +19,4 @@ const BearSafety = ({ tags }) => {
 };
 
 export default BearSafety;
+
