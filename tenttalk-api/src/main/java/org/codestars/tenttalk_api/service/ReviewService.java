@@ -3,42 +3,61 @@ package org.codestars.tenttalk_api.service;
 import org.codestars.tenttalk_api.dto.ReviewDTO;
 import org.codestars.tenttalk_api.models.Campground;
 import org.codestars.tenttalk_api.models.Review;
+import org.codestars.tenttalk_api.models.Tag;
 import org.codestars.tenttalk_api.models.data.CampgroundRepository;
 import org.codestars.tenttalk_api.models.data.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
 public class ReviewService {
 
     @Autowired
-    ReviewRepository reviewRepository;
+    private ReviewRepository reviewRepository;
     @Autowired
-    CampgroundRepository campgroundRepository;
-
+    private CampgroundRepository campgroundRepository;
+    @Autowired
+    private TagService tagService;
 
     public Review addReview(ReviewDTO reviewDTO) {
-
         Campground campground = campgroundRepository.findById(reviewDTO.getCampgroundId())
                 .orElseThrow(() -> new RuntimeException("Campground not found"));
+
+        List<Tag> tags = saveTags(reviewDTO.getTags());
 
         Review review = new Review();
         review.setFeedback(reviewDTO.getFeedback());
         review.setRating(reviewDTO.getRating());
         review.setCampground(campground);
+        review.setTags(tags);
+
         return reviewRepository.save(review);
     }
 
+    private List<Tag> saveTags(List<String> tagNames) {
+        List<Tag> tags = new ArrayList<>();
+        for (String tagName : tagNames) {
+            Tag tag = tagService.findByName(tagName);
+            if (tag == null) {
+                tag = new Tag(tagName);
+                tagService.saveTag(tag);
+            }
+            tags.add(tag);
+        }
+        return tags;
+    }
 
-    public Review updateReview (Long id, ReviewDTO reviewDTO){
+    public Review updateReview(Long id, ReviewDTO reviewDTO) {
         Review review = reviewRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Review not found"));
 
-        review.setFeedback((reviewDTO.getFeedback()));
+        review.setFeedback(reviewDTO.getFeedback());
         review.setRating(reviewDTO.getRating());
 
         if (reviewDTO.getCampgroundId() != null) {
@@ -46,9 +65,12 @@ public class ReviewService {
                     .orElseThrow(() -> new RuntimeException("Campground not found"));
             review.setCampground(campground);
         }
+
+        List<Tag> tags = saveTags(reviewDTO.getTags());
+        review.setTags(tags);
+
         return reviewRepository.save(review);
     }
-
 
     public Campground updateAverageRating (Campground campground, Review newReview) {
         // get all ratings for campground
@@ -70,16 +92,20 @@ public class ReviewService {
         return campgroundRepository.save(campground);
     }
 
-
     public void deleteReviewById(Long id) {
         Review review = reviewRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Campground not found"));
+                .orElseThrow(() -> new RuntimeException("Review not found"));
 
-        Campground campground = review.getCampground();
-        if (campground != null) {
-            campground.getReviews().remove(review);
-            campgroundRepository.save(campground);
-        }
         reviewRepository.delete(review);
     }
+
+    public List<Review> findAll() {
+        return reviewRepository.findAll();
+    }
+
+    public Optional<Review> findById(Long id) {
+        return reviewRepository.findById(id);
+    }
 }
+
+

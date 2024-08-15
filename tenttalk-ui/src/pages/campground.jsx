@@ -4,9 +4,11 @@ import Share from '../components/share';
 import ViewCampground from '../components/campground/ViewCampground';
 import { DisplayAllReviews } from "../components/review/DisplayAllReviews";
 import { DisplayRating } from "../components/review/DisplayRating";
+import SavePDF from "../components/campground/SavePDF";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import CampgroundPhoto from "../components/campground/CampgroundPhoto";
 
 
 
@@ -15,6 +17,7 @@ export function Campground() {
     const { id } = useParams();
 
     const [campground, setCampground] = useState([]);
+
 
     useEffect(() => {
         loadCampground();
@@ -32,11 +35,15 @@ export function Campground() {
     return(
     <div>
         <Navbar />
-        <ViewCampground />
-        <div>
-            <h3>Average Rating: {(Math.round(campground.rating*10))/10 }</h3>
-            <DisplayRating rating={ campground.rating } size={36} />
+        <div id="pdf">
+            <ViewCampground />
+            <CampgroundPhoto searchQuery={campground.name} imageHeight={400} />
+            <div>
+                <h3>Average Rating: {(Math.round(campground.rating*10))/10 }</h3>
+                <DisplayRating rating={ campground.rating } size={36} />
+            </div>
         </div>
+        <SavePDF />
         <Share />
         <DisplayAllReviews campgroundId={ id }/>
     </div>

@@ -1,18 +1,20 @@
 package org.codestars.tenttalk_api.dto;
 
-public class ReviewDTO{
-        private String feedback;
-        private int rating;
-        private Long campgroundId;
+import java.util.List;
 
-        public ReviewDTO() {
+public class ReviewDTO {
+    private String feedback;
+    private int rating;
+    private Long campgroundId;
+    private List<String> tags;
 
-        }
+    public ReviewDTO() {}
 
-    public ReviewDTO(String feedback, int rating, Long campgroundId) {
+    public ReviewDTO(String feedback, int rating, Long campgroundId, List<String> tags) {
         this.feedback = feedback;
         this.rating = rating;
         this.campgroundId = campgroundId;
+        this.tags = tags;
     }
 
     public String getFeedback() {
@@ -37,5 +39,13 @@ public class ReviewDTO{
 
     public void setCampgroundId(Long campgroundId) {
         this.campgroundId = campgroundId;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 }
