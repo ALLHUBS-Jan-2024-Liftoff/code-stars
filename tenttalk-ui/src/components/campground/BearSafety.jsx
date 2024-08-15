@@ -2,6 +2,7 @@
 import React from 'react';
 
 const BearSafety = ({ tags }) => {
+    console.log(tags); 
 
     if (!Array.isArray(tags) || (!tags.includes('bears') && !tags.includes('bear'))) {
         return null; // Don't render anything if 'bears' or 'bear' tag is not present

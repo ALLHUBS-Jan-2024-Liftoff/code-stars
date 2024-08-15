@@ -10,10 +10,29 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import CampgroundPhoto from "../components/campground/CampgroundPhoto";
 import ReviewButton from "../components/review/ReviewButton";
+import BearSafety from '../components/campground/BearSafety'; 
 
 
 
 export function Campground() {
+
+
+
+  //tags
+
+    // const [tags, setTags] = useState([]);
+
+    // useEffect(() => {
+    //     fetch('/tag/getAll')
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             setTags(data.map(tag => tag.name)); // Adjust based on your API response structure
+    //         })
+    //         .catch(error => console.error('Error fetching tags:', error));
+    // }, []);
+
+
+
 
     const { id } = useParams();
 
@@ -44,6 +63,9 @@ export function Campground() {
                 <DisplayRating rating={ campground.rating } size={36} />
             </div>
         </div>
+        
+        <BearSafety tags={campground.tags || []} /> 
+
         <SavePDF />
         <Share />
         <ReviewButton campgroundId={ id }/>
