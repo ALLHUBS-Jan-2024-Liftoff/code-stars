@@ -57,8 +57,9 @@ public class ReviewController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteReview(@PathVariable Long id) {
-        String response = reviewService.deleteReviewById(id);
-        return ResponseEntity.ok(response);
+        Review review = reviewRepository.findById(id).orElseThrow(() -> new RuntimeException("Review not found"));
+        reviewService.deleteReviewById(id);
+        return ResponseEntity.noContent().build();
     }
 }
 

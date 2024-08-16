@@ -96,7 +96,11 @@ public class ReviewService {
     public String deleteReviewById(Long id) {
         Review review = reviewRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Review not found"));
-
+        Campground campground = review.getCampground();
+        if (campground != null) {
+            campground.getReviews().remove(review);
+            campgroundRepository.save(campground);
+        }
         reviewRepository.delete(review);
         return "review deleted";
     }
