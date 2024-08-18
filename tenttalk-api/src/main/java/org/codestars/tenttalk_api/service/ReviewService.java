@@ -7,6 +7,7 @@ import org.codestars.tenttalk_api.models.Tag;
 import org.codestars.tenttalk_api.models.data.CampgroundRepository;
 import org.codestars.tenttalk_api.models.data.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -92,11 +93,16 @@ public class ReviewService {
         return campgroundRepository.save(campground);
     }
 
-    public void deleteReviewById(Long id) {
+    public String deleteReviewById(Long id) {
         Review review = reviewRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Review not found"));
-
+        Campground campground = review.getCampground();
+        if (campground != null) {
+            campground.getReviews().remove(review);
+            campgroundRepository.save(campground);
+        }
         reviewRepository.delete(review);
+        return "review deleted";
     }
 
     public List<Review> findAll() {
