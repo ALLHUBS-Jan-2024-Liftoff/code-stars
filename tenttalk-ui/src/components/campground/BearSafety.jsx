@@ -4,9 +4,12 @@ import React from 'react';
 const BearSafety = ({ tags }) => {
     console.log(tags); 
 
+
+
     if (!Array.isArray(tags) || (!tags.includes('bears') && !tags.includes('bear'))) {
-        return null; // Don't render anything if 'bears' or 'bear' tag is not present
+        return <p>No bear sightings.</p>; // Render "No bear sightings" message if 'bears' or 'bear' tag is not present
     }
+
 
     return (
         <div className="alert alert-danger" role="alert">
@@ -18,6 +21,7 @@ const BearSafety = ({ tags }) => {
         </div>
     );
 };
+
 
 export default BearSafety;
 

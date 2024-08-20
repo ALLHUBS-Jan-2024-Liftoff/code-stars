@@ -17,40 +17,44 @@ import BearSafety from '../components/campground/BearSafety';
 export function Campground() {
 
 
-
-  //tags
-
-    // const [tags, setTags] = useState([]);
-
-    // useEffect(() => {
-    //     fetch('/tag/getAll')
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             setTags(data.map(tag => tag.name)); // Adjust based on your API response structure
-    //         })
-    //         .catch(error => console.error('Error fetching tags:', error));
-    // }, []);
-
-
-
-
     const { id } = useParams();
 
     const [campground, setCampground] = useState([]);
+
+    const [tags, setTags] = useState([]); // State to handle tags
 
 
     useEffect(() => {
         loadCampground();
     },[]);
 
+
+// manage tags using useState and update them within the loadCampground function
+// "tags": campground.tags.map((tag) => tag.name) // maps tag array to correct format
+
+
     const loadCampground = async () => {
         try {
             const result = await axios.get(`http://localhost:8080/campground/${id}`);
+            console.log('Full API response:', result.data);
             setCampground(result.data);
+
+
+            //set tags
+            if (result.data.tags) {
+                const tagNames = result.data.tags.map((tag) => tag.name) 
+                setTags(tagNames);
+                console.log('Tags set:', tagNames);
+            }
+
         } catch (error) {
             console.error('Error fetching campground:', error);
         }
+
+
     };
+
+
 
     return(
     <div>
@@ -62,9 +66,12 @@ export function Campground() {
                 <h3>Average Rating: {(Math.round(campground.rating*10))/10 }</h3>
                 <DisplayRating rating={ campground.rating } size={36} />
             </div>
+
         </div>
         
-        <BearSafety tags={campground.tags || []} /> 
+        {/* <BearSafety tags={tags} /> */}
+
+        <BearSafety tags={campground.tags} /> 
 
         <SavePDF />
         <Share />
