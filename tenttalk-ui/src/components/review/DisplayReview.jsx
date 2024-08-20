@@ -10,6 +10,8 @@ export default function DisplayReview({ id }) {
   // updates: manages edit mode
   const [isEditing, setIsEditing] = useState(false);
 
+  const [tags, setTags] = useState();
+
   //loads review when page is loaded
   useEffect(() => {
     loadReview();
@@ -19,6 +21,7 @@ export default function DisplayReview({ id }) {
   const loadReview = async () => {
     const result = await axios.get(`http://localhost:8080/review/${id}`);
     setReview(result.data);
+    setTags(result.data.tags.map((tag) => <p>{tag.name}</p>));
   }
 
   // updates - handle edit button click
@@ -48,13 +51,14 @@ export default function DisplayReview({ id }) {
         {!isEditing ? (
           <>
             <p>"{review.feedback}"</p>
-
+            
+            <div>{tags}</div>
             {/* Conditionally render the Edit button if the current user is the author */}
-            {/* {currentUserId === review.authorId && ( */}
+
             <button onClick={handleEditClick} className="btn btn-warning">
               Edit Review
             </button>
-            {/* )} */}
+
           </>
         ) : (
           // Render the UpdateReviewForm component when in edit mode
