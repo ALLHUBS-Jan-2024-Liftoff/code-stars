@@ -12,7 +12,7 @@ export default function LoginForm() {
       const response = await axios.post('http://localhost:8080/api/users/login', { email, password });
       if (response.data) {
         console.log('Login successful:', response.data);
-        Navigate('/account');
+        //Navigate('/account');
       } else {
         alert('Invalid email or password');
       }

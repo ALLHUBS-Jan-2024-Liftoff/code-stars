@@ -91,13 +91,10 @@ public class UserController {
     @GetMapping("/getAll")
     public List<User> getAllUsers() {return (List<User>) userRepository.findAll();}
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Optional<User>> getUserById(@PathVariable int id) {
-        Optional<User> user = userRepository.findById(id);
-        if (user.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
-        return ResponseEntity.ok(user);
+    @GetMapping("/account")
+    public ResponseEntity<User> getUserById(HttpSession session) {
+        User currentUser = getUserFromSession(session);
+        return ResponseEntity.ok(currentUser);
     }
 
     @PutMapping("/{id}")

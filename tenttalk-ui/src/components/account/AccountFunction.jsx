@@ -10,13 +10,13 @@ export default function AccountFunction() {
     // Fetch user information
     const fetchUserData = async () => {
       try {
-        const userId = sessionStorage.getItem("userId"); 
+        const userId = sessionStorage.getItem("user"); 
         if (!userId) {
         
           return;
         }
 
-        const userResponse = await axios.get(`http://localhost:8080/api/users/{id}`, { withCredentials: true });
+        const userResponse = await axios.get(`http://localhost:8080/api/users/account`, { withCredentials: true });
         setUser(userResponse.data);
       } catch (error) {
         console.error('Error fetching user data:', error);
