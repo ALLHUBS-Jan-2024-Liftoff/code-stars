@@ -21,7 +21,7 @@ export default function DisplayReview({ id }) {
   const loadReview = async () => {
     const result = await axios.get(`http://localhost:8080/review/${id}`);
     setReview(result.data);
-    setTags(result.data.tags.map((tag) => <p>{tag.name}</p>));
+    setTags(result.data.tags.map((tag) => <span key={tag.id} className="tag">{tag.name}</span>));
   }
 
   // updates - handle edit button click
@@ -52,7 +52,7 @@ export default function DisplayReview({ id }) {
           <>
             <p>"{review.feedback}"</p>
             
-            <div>{tags}</div>
+            <p>{tags}</p>
             {/* Conditionally render the Edit button if the current user is the author */}
 
             <button onClick={handleEditClick} className="btn btn-warning">
