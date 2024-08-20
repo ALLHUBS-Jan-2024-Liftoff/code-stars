@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
@@ -11,7 +12,7 @@ export default function LoginForm() {
       const response = await axios.post('http://localhost:8080/api/users/login', { email, password });
       if (response.data) {
         console.log('Login successful:', response.data);
-        
+        Navigate('/account');
       } else {
         alert('Invalid email or password');
       }
