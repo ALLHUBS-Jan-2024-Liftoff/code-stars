@@ -75,8 +75,8 @@ public class UserController {
         }
 
         setUserInSession(request.getSession(), user);
-        response.put("message", "User logged in successfully.");
-        response.put("user", user.getUsername());
+        String userId = String.valueOf(user.getId());
+        response.put("userId", userId);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 

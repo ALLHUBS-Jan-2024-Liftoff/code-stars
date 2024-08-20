@@ -11,7 +11,8 @@ export default function LoginForm() {
     try {
       const response = await axios.post('http://localhost:8080/api/users/login', { email, password });
       if (response.data) {
-        console.log('Login successful:', response.data);
+        console.log('Login successful:', response.data.userId);
+        sessionStorage.setItem("user", response.data.userId);
         //Navigate('/account');
       } else {
         alert('Invalid email or password');
