@@ -1,17 +1,16 @@
 import React from 'react'
+import Campgroundcard from "./CampgroundCard"
 
-const favoriteList = ({ toggleModal, numOfFavorites }) => {
+const FavoriteList = ({ data, currentPage, getAllCampgrounds }) => {
   return (
-    <header className = 'header'>
-        <div>favoriteList
-            <h3>Favorite List ({numOfFavorites})</h3>
-            <button onClick={()=> toggleModal(true)} className = 'btn'>
-                <i className ='bi bi-plus-square'></i>Add To Favorites
-            </button>
-        </div> 
-    </header>
-    
+    <div>
+      {data?.content?.length=== 0 && <div>No Campgrounds</div>}
+
+      <ul className = 'contact__list'>
+        {data?.content?.length > 0 && data.content.map(campground => <Campgroundcard Campgroundcard = {campground} key={campground.id} />)}
+      </ul>
+    </div>
   )
 }
 
-export default favoriteList
+export default FavoriteList
