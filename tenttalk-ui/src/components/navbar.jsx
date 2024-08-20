@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Logout from './account/Logout'
 
 export default function Navbar() {
   return (
