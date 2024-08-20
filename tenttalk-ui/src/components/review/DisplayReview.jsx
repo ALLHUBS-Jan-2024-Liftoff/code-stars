@@ -21,6 +21,7 @@ export default function DisplayReview({ id }) {
   const loadReview = async () => {
     const result = await axios.get(`http://localhost:8080/review/${id}`);
     setReview(result.data);
+    // maps tags from review into list of badges
     setTags(result.data.tags.map((tag) => <span key={tag.id} className="tag">{tag.name}</span>));
   }
 
