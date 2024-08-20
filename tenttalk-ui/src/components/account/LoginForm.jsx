@@ -2,18 +2,21 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-export default function LoginForm() {
+export default function LoginForm({ setAuthenticated }){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:8080/api/users/login', { email, password });
       if (response.data) {
-        console.log('Login successful:', response.data.userId);
-        sessionStorage.setItem("user", response.data.userId);
-        //Navigate('/account');
+        console.log('Login successful:', response.data);
+        // Store the user ID in session storage
+        sessionStorage.setItem('userId', response.data.userId);
+        //setAuthenticated(true); 
+        navigate('/account');
       } else {
         alert('Invalid email or password');
       }
@@ -50,4 +53,3 @@ export default function LoginForm() {
     </form>
   );
 }
-

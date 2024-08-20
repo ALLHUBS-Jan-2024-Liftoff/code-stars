@@ -39,12 +39,12 @@ public class UserController {
     }
 
     public User getUserFromSession(HttpSession session) {
-        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        Long userId = (long) session.getAttribute(userSessionKey);
         if (userId == null) {
             return null;
         }
 
-        Optional<User> user = userRepository.findById(userId);
+        Optional<User> user = userRepository.findById(userId.intValue());
         return user.orElse(null);
     }
 
@@ -77,6 +77,8 @@ public class UserController {
         setUserInSession(request.getSession(), user);
         String userId = String.valueOf(user.getId());
         response.put("userId", userId);
+        response.put("email", user.getEmail());
+        response.put("username",user.getUsername());
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
@@ -91,11 +93,17 @@ public class UserController {
     @GetMapping("/getAll")
     public List<User> getAllUsers() {return (List<User>) userRepository.findAll();}
 
-    @GetMapping("/account")
-    public ResponseEntity<User> getUserById(HttpSession session) {
-        User currentUser = getUserFromSession(session);
-        return ResponseEntity.ok(currentUser);
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable int id) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isPresent()) {
+            return ResponseEntity.ok(user.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
     }
+
+
 
     @PutMapping("/{id}")
     public User updateUser(@PathVariable int id, @RequestBody User user) {
@@ -116,5 +124,6 @@ public class UserController {
         userRepository.delete(user1);
         return ResponseEntity.noContent().build();
     }
+
 }
 

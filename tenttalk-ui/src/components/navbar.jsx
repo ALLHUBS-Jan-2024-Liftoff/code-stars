@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Logout from './account/Logout'
 
-export default function Navbar() {
+export default function Navbarr({ authenticated, setAuthenticated }) {
   return (
     <div>
       <ul className='navbar'>
@@ -11,6 +12,7 @@ export default function Navbar() {
         <li><Link to="/register">Register  </Link></li>
         <li><Link to="/account">Account  </Link></li>
         <li><Link to="/create-campground">Create Campground  </Link></li>
+        <li><Logout setAuthenticated={setAuthenticated} /></li>
       </ul>
     </div>
   )
