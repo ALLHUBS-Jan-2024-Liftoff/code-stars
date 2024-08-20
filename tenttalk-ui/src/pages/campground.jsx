@@ -18,6 +18,7 @@ export function Campground() {
     const { id } = useParams();
     const [campground, setCampground] = useState([]);
     const [tags, setTags] = useState([]); // State to handle tags
+    const [hasBears, setHasBears] = useState(false);
 
     useEffect(() => {
         loadCampground();
@@ -47,21 +48,17 @@ export function Campground() {
             //nested for loop
             for (let i = 0; i < result.data.reviews.length; i++) {
                 const review = result.data.reviews[i];
+                // console.log(review);
                 for (let j = 0; j < review.tags.length; j++) {
                     const tag = review.tags[j];
-                    if (tag === 'bears') {
-                        console.log("Has bears!");
+                    // console.log(tag);
+                    if (tag.name === 'bears') {
+                        // console.log("Has bears!");
+                        setHasBears(true);
                     }
+                    
                 }
             }
-
-                        // // Check tags within each review if applicable
-            // result.data.reviews.forEach(review => {
-            //     if (review.tags.includes('bears')) {
-            //         console.log("Has bears!");
-            //     }
-            // });
-        
 
         } catch (error) {
             console.error('Error fetching campground:', error);
@@ -82,8 +79,8 @@ export function Campground() {
 
         </div>
         
-        {/* <BearSafety tags={tags} /> */}
-        <BearSafety tags={campground.tags} /> 
+        {/* //boolean and terinary */}
+        {hasBears ? <BearSafety tags={campground.tags} /> : <p> No Bear Sightings! </p>}
 
         <SavePDF />
         <Share />
@@ -91,4 +88,5 @@ export function Campground() {
         <DisplayAllReviews campgroundId={ id }/>
     </div>
     );
+    
 }
