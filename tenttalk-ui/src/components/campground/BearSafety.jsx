@@ -23,5 +23,6 @@ const BearSafety = ({ tags }) => {
 };
 
 
+
 export default BearSafety;
 
