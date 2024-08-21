@@ -43,6 +43,7 @@ export default function ReviewForm({campgroundId}) {
         event.preventDefault();
         await axios.post("http://localhost:8080/review/add", {
             "campgroundId": campgroundId.id,
+            "userId": sessionStorage.getItem("userId"),
             "rating": starRating,
             "feedback": feedback,
             "tags": tags
