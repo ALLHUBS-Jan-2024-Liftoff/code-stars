@@ -29,7 +29,7 @@ public class User extends AbstractEntity {
     private List<Favorite> favoriteCampsites;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @JsonManagedReference(value = "user_review")
     private List<Review> reviews = new ArrayList<>();
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
