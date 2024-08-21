@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.codestars.tenttalk_api.models.data.CampgroundRepository;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -15,6 +16,14 @@ public class CampgroundService {
 
     @Autowired
     private CampgroundRepository campgroundRepository;
+    public Campground findMostPopularCampground() {
+        List<Campground> campgrounds = campgroundRepository.findAll();
+
+
+        return campgrounds.stream()
+                .max(Comparator.comparingDouble(Campground::getRating))
+                .orElse(null);
+    }
     @Autowired
     private ReviewRepository reviewRepository;
 
