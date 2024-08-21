@@ -36,7 +36,6 @@ public class User extends AbstractEntity {
         this.email = email;
         this.username = username;
         this.password = encoder.encode(password);
-        this.favoriteCampsites = favoriteCampsites;
     }
 
     public void addToFavorite(Favorite favorite){
