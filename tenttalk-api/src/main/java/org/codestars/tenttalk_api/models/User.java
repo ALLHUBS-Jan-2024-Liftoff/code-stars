@@ -1,5 +1,6 @@
 package org.codestars.tenttalk_api.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -29,7 +30,7 @@ public class User extends AbstractEntity {
     private List<Favorite> favoriteCampsites;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference(value = "user_review")
+    @JsonBackReference(value = "user_review")
     private List<Review> reviews = new ArrayList<>();
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();

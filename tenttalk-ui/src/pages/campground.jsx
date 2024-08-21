@@ -34,7 +34,7 @@ export function Campground() {
     const loadCampground = async () => {
         try {
             const result = await axios.get(`http://localhost:8080/campground/${id}`);
-            console.log('Full API response:', result.data);
+           // console.log('Full API response:', result.data);
             setCampground(result.data);
             
 
@@ -42,7 +42,7 @@ export function Campground() {
             if (result.data.tags) {
                 const tagNames = result.data.tags.map(tag => tag.name);
                 setTags(tagNames);
-                console.log('Tags set:', tagNames);
+                //console.log('Tags set:', tagNames);
             }
 
             //nested for loop

@@ -11,6 +11,7 @@ export default function DisplayReview({ id }) {
   const [isEditing, setIsEditing] = useState(false);
 
   const [tags, setTags] = useState();
+  const [username, setUsername] = useState("Anonymous User");
 
   //loads review when page is loaded
   useEffect(() => {
@@ -23,6 +24,7 @@ export default function DisplayReview({ id }) {
     setReview(result.data);
     // maps tags from review into list of badges
     setTags(result.data.tags.map((tag) => <span key={tag.id} className="tag">{tag.name}</span>));
+    setUsername(result.data.user.username);
   }
 
   // updates - handle edit button click
@@ -45,7 +47,7 @@ export default function DisplayReview({ id }) {
   return (
     <div className="card">
       <div className="card-header">
-        <h4>User's Review: <DisplayRating rating={review.rating} /></h4>
+        <h4>{username}'s Review: <DisplayRating rating={review.rating} /></h4>
 
       </div>
       <div className="card-body">
