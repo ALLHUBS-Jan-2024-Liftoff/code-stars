@@ -67,5 +67,13 @@ public class CampgroundController {
         return ResponseEntity.noContent().build();
     }
 
-
+    @GetMapping("/popular")
+    public ResponseEntity<Campground> getMostPopularCampground() {
+        Campground popularCampground = campgroundService.findMostPopularCampground();
+        if (popularCampground == null) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(popularCampground);
+    }
 }
+
