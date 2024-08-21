@@ -62,17 +62,7 @@ export default function ReviewForm({campgroundId}) {
   return (
     <div>
         <form onSubmit={(event) => onSubmit(event)}>
-            {/* <div className="form-group">
-                <label htmlFor="campground">Campground ID</label>
-                <input 
-                    type="text" 
-                    name="campground"
-                    id="campground" 
-                    value={campground} 
-                    onChange={(e)=>onInputChange(e)}
-                    className="form-control" 
-                />
-            </div> */}
+
             <label>Rating</label>
             < StarInput starRating={starRating} setStarRating={setStarRating} />
             

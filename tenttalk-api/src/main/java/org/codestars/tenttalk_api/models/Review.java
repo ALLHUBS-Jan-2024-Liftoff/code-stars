@@ -19,6 +19,7 @@ public class Review extends AbstractEntity {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User user;
 
     @ManyToMany(fetch = FetchType.EAGER)

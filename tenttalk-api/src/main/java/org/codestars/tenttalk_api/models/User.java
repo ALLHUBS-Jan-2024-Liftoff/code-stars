@@ -9,6 +9,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,6 +27,10 @@ public class User extends AbstractEntity {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Favorite> favoriteCampsites;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Review> reviews = new ArrayList<>();
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -76,7 +81,15 @@ public class User extends AbstractEntity {
         return encoder.matches(password, this.password);
     }
 
-//    public List<Favorite> getFavoriteCamps() {
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    //    public List<Favorite> getFavoriteCamps() {
 //        return favoriteCampsites;
 //    }
 //
