@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function RegisterForm() {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [verifyPassword, setVerifyPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,6 +18,7 @@ export default function RegisterForm() {
     try {
       const response = await axios.post('http://localhost:8080/api/users/register', { email, username, password });
       console.log('Registration successful:', response.data);
+      navigate('/login');
     } catch (error) {
       console.error('Registration error:', error);
     }
