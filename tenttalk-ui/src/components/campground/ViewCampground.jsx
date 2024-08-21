@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import BearSafety from './BearSafety'; 
+
 
 export default function ViewCampground() {
     const [campground, setCampground] = useState({
