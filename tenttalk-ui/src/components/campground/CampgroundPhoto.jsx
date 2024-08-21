@@ -5,7 +5,7 @@ const API_KEY = "";
 
 export default function CampgroundPhoto({searchQuery, imageHeight}) {
 
-  const [photoURL, setPhotoURL] = useState();120
+  const [photoURL, setPhotoURL] = useState();
 
 
   useEffect(() => {

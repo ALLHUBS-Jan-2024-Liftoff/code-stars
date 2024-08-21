@@ -57,11 +57,11 @@ export default function DisplayReview({ id }) {
             
             <p>{tags}</p>
             {/* Conditionally render the Edit button if the current user is the author */}
-
+          {/* {currentUserId === review.authorId && ( */}
             <button onClick={handleEditClick} className="btn btn-warning">
               Edit Review
             </button>
-
+          {/* )} */}
           </>
         ) : (
           // Render the UpdateReviewForm component when in edit mode
