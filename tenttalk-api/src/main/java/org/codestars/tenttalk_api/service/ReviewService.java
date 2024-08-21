@@ -109,6 +109,11 @@ public class ReviewService {
             campground.getReviews().remove(review);
             campgroundRepository.save(campground);
         }
+        User user = review.getUser();
+        if (user != null) {
+            user.getReviews().remove(review);
+            userRepository.save(user);
+        }
         reviewRepository.delete(review);
         return "review deleted";
     }
