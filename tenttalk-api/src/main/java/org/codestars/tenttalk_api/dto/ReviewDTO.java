@@ -6,14 +6,16 @@ public class ReviewDTO {
     private String feedback;
     private int rating;
     private Long campgroundId;
+    private Long userId;
     private List<String> tags;
 
     public ReviewDTO() {}
 
-    public ReviewDTO(String feedback, int rating, Long campgroundId, List<String> tags) {
+    public ReviewDTO(String feedback, int rating, Long campgroundId, Long userId, List<String> tags) {
         this.feedback = feedback;
         this.rating = rating;
         this.campgroundId = campgroundId;
+        this.userId = userId;
         this.tags = tags;
     }
 
@@ -39,6 +41,14 @@ public class ReviewDTO {
 
     public void setCampgroundId(Long campgroundId) {
         this.campgroundId = campgroundId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public List<String> getTags() {
