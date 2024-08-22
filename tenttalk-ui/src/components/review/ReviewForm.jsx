@@ -43,6 +43,7 @@ export default function ReviewForm({campgroundId}) {
         event.preventDefault();
         await axios.post("http://localhost:8080/review/add", {
             "campgroundId": campgroundId.id,
+            "userId": sessionStorage.getItem("userId"),
             "rating": starRating,
             "feedback": feedback,
             "tags": tags
@@ -62,17 +63,7 @@ export default function ReviewForm({campgroundId}) {
   return (
     <div>
         <form onSubmit={(event) => onSubmit(event)}>
-            {/* <div className="form-group">
-                <label htmlFor="campground">Campground ID</label>
-                <input 
-                    type="text" 
-                    name="campground"
-                    id="campground" 
-                    value={campground} 
-                    onChange={(e)=>onInputChange(e)}
-                    className="form-control" 
-                />
-            </div> */}
+
             <label>Rating</label>
             < StarInput starRating={starRating} setStarRating={setStarRating} />
             

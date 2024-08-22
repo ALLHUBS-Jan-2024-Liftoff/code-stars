@@ -1,5 +1,6 @@
 package org.codestars.tenttalk_api.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -9,6 +10,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,6 +29,10 @@ public class User extends AbstractEntity {
     @JsonManagedReference
     private List<Favorite> favoriteCampsites;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference(value = "user_review")
+    private List<Review> reviews = new ArrayList<>();
+
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 
@@ -36,6 +42,7 @@ public class User extends AbstractEntity {
         this.email = email;
         this.username = username;
         this.password = encoder.encode(password);
+        this.reviews = reviews;
         //this.favoriteCampsites = favoriteCampsites;
     }
 
@@ -76,7 +83,15 @@ public class User extends AbstractEntity {
         return encoder.matches(password, this.password);
     }
 
-//    public List<Favorite> getFavoriteCamps() {
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    //    public List<Favorite> getFavoriteCamps() {
 //        return favoriteCampsites;
 //    }
 //
