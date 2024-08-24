@@ -41,7 +41,7 @@ Note: Other features will still function without a key.
 
 ## Contributors
 - Mads Bohn -- [mads-bohn](https://github.com/mads-bohn)
-- Amanda Darby -- [momijivibes](https://github.com/momijivibes)
+- Amanda Darby -- [amanda-darby](https://github.com/amanda-darby)
 - June Lee -- [2amkoding](https://github.com/2amkoding)
 - Pierce L -- [pierceLC](https://github.com/pierceLC)
 
