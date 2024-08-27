@@ -4,6 +4,7 @@ import AccountFunction from '../components/account/AccountFunction';
 import Logout from '../components/account/Logout'; 
 
 export function Account() {
+  
   return (
     <div>
       <Navbar />

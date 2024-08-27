@@ -54,6 +54,15 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.tag {
+  color: white;
+  background-color: rgb(141, 141, 141);
+  font-size: .85em;
+  margin: 5px;
+  padding: 3px 7px;
+  border-radius: 10px;
+}
+
 .navbar li {
   display: inline;
   margin: 10px;

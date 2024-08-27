@@ -1,5 +1,5 @@
 import React from 'react'
-import Campgroundcard from "./CampgroundCard"
+import campground from "../../pages/campground"
 
 const FavoriteList = ({ data, getAllCampgrounds }) => {
   return (
@@ -8,7 +8,7 @@ const FavoriteList = ({ data, getAllCampgrounds }) => {
       {data?.content?.length=== 0 && <div>No Added Campgrounds</div>}
 
       <ul className = 'contact__list'>
-        {data?.content?.length > 0 && data.content.map(campgroundCard => <CampgroundCard campgroundCard = {campgroundCard} key={campgroundCard.id} />)}
+        {data?.content?.length > 0 && data.content.map(campground => <Campground campground = {campground} key={campground.id} />)}
       </ul>
     </div>
   )

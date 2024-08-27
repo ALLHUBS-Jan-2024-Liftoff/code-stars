@@ -4,8 +4,10 @@ import org.codestars.tenttalk_api.dto.ReviewDTO;
 import org.codestars.tenttalk_api.models.Campground;
 import org.codestars.tenttalk_api.models.Review;
 import org.codestars.tenttalk_api.models.Tag;
+import org.codestars.tenttalk_api.models.User;
 import org.codestars.tenttalk_api.models.data.CampgroundRepository;
 import org.codestars.tenttalk_api.models.data.ReviewRepository;
+import org.codestars.tenttalk_api.models.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -24,11 +26,16 @@ public class ReviewService {
     @Autowired
     private CampgroundRepository campgroundRepository;
     @Autowired
+    private UserRepository userRepository;
+    @Autowired
     private TagService tagService;
 
     public Review addReview(ReviewDTO reviewDTO) {
         Campground campground = campgroundRepository.findById(reviewDTO.getCampgroundId())
                 .orElseThrow(() -> new RuntimeException("Campground not found"));
+
+        User user = userRepository.findById(reviewDTO.getUserId().intValue())
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
         List<Tag> tags = saveTags(reviewDTO.getTags());
 
@@ -36,6 +43,7 @@ public class ReviewService {
         review.setFeedback(reviewDTO.getFeedback());
         review.setRating(reviewDTO.getRating());
         review.setCampground(campground);
+        review.setUser(user);
         review.setTags(tags);
 
         return reviewRepository.save(review);
@@ -100,6 +108,11 @@ public class ReviewService {
         if (campground != null) {
             campground.getReviews().remove(review);
             campgroundRepository.save(campground);
+        }
+        User user = review.getUser();
+        if (user != null) {
+            user.getReviews().remove(review);
+            userRepository.save(user);
         }
         reviewRepository.delete(review);
         return "review deleted";
