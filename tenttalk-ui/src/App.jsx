@@ -8,6 +8,7 @@ import { Login } from './pages/login'
 import { Register } from './pages/register'
 import { Account } from './pages/account'
 import { CreateCampground } from './pages/createcampground'
+import { Favorites } from './pages/favorites'
 
 
 
@@ -24,6 +25,8 @@ function App() {
         <Route path="/account" element={<Account/>} />
         <Route path="/create-campground" element={<CreateCampground/>} />
         <Route path="/campground/:id" element={<Campground />} /> 
+        <Route path="/favorites" element={<Favorites />} /> 
+
         
       </Routes>
     </HashRouter>
