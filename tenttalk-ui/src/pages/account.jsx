@@ -6,11 +6,10 @@ import { useNavigate } from 'react-router-dom';
 
 export function Account() {
   
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
 
-  // Function to handle button click and navigate to the desired route
   const handleNavigate = () => {
-    navigate('/favorites'); // Replace '/create-campground' with the desired route path
+    navigate('/favorites'); 
   };
 
 
