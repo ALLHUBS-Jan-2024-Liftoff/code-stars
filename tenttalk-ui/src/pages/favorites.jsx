@@ -8,7 +8,7 @@ export function Favorites() {
        
         <div>
              <Navbar />
-            <h1>asdfasdf</h1>
+            <h1>Favorite Campground's</h1>
             <UserFavorites />
         </div>
     )

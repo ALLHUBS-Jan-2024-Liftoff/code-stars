@@ -9,6 +9,7 @@ import { Register } from './pages/register'
 import { Account } from './pages/account'
 import { CreateCampground } from './pages/createcampground'
 import { Favorites } from './pages/favorites'
+//import { UserFavorites } from './components/favoriteCampground/userFavorites'
 
 
 
