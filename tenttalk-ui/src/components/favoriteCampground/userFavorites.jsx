@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CampgroundPhoto from '../campground/CampgroundPhoto';
+import '../../favorite.css'
 
 const UserFavorites = () => {
   const [favorites, setFavorites] = useState([]);
@@ -37,20 +38,19 @@ const UserFavorites = () => {
   }
 
   return (
-    <div className="UserFavorites">
+    <div className="user-favorites-container">
       {favorites.length === 0 ? (
         <p>No favorites found.</p>
       ) : (
         favorites.map(favorite => (
           <div key={favorite.id} className="campground-card">
+              <CampgroundPhoto searchQuery={favorite.campground.name} imageHeight={200} />
             <h2>{favorite.campground.name}</h2>
             <p>Address: {favorite.campground.address}</p>
             <p>
               Website: <a href={favorite.campground.website} target="_blank" rel="noopener noreferrer">{favorite.campground.website}</a>
             </p>
             <p>Rating: {favorite.campground.rating}</p>
-            <CampgroundPhoto searchQuery={favorite.campground.name} imageHeight={200} />
-            
           </div>
         ))
       )}
@@ -59,3 +59,5 @@ const UserFavorites = () => {
 };
 
 export default UserFavorites;
+
+
