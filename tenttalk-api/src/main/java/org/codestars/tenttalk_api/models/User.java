@@ -43,7 +43,7 @@ public class User extends AbstractEntity {
         this.username = username;
         this.password = encoder.encode(password);
         this.reviews = reviews;
-        //this.favoriteCampsites = favoriteCampsites;
+
     }
 
     public void addToFavorite(Favorite favorite){
@@ -91,12 +91,6 @@ public class User extends AbstractEntity {
         this.reviews = reviews;
     }
 
-    //    public List<Favorite> getFavoriteCamps() {
-//        return favoriteCampsites;
-//    }
-//
-//    public void setFavoriteCamps(List<Favorite> favoriteCampsites) {
-//        this.favoriteCampsites = favoriteCampsites;
-//    }
+
 }
 

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { DisplayRating } from '../review/DisplayRating';
 
+
 export default function ResultTable() {
   
     // initializes campgrounds hook

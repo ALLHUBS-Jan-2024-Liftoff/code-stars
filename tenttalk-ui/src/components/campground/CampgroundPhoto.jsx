@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react';
 
-const API_KEY = "";
+const API_KEY = "AIzaSyDNTuMUMFpuVM-ftPxMiG7hoGTRZ00ZujY";
 
 export default function CampgroundPhoto({searchQuery, imageHeight}) {
 
