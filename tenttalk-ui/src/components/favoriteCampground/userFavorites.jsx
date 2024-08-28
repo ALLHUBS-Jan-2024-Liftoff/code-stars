@@ -33,6 +33,23 @@ const UserFavorites = () => {
     }
   }, []);
 
+
+  const handleDelete = (favoriteId) => {
+    fetch(`http://localhost:8080/favorites/${favoriteId}`, {
+      method: 'DELETE',
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to delete the favorite');
+      }
+      // Remove the deleted favorite from state
+      setFavorites(prevFavorites => prevFavorites.filter(fav => fav.id !== favoriteId));
+    })
+    .catch(error => {
+      console.error('Error deleting favorite:', error);
+    });
+  };
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -51,6 +68,10 @@ const UserFavorites = () => {
               Website: <a href={favorite.campground.website} target="_blank" rel="noopener noreferrer">{favorite.campground.website}</a>
             </p>
             <p>Rating: {favorite.campground.rating}</p>
+
+            <button onClick={() => handleDelete(favorite.id)} className="delete-button">
+              Delete
+            </button>
           </div>
         ))
       )}
