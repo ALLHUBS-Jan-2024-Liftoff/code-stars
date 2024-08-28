@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import CampgroundPhoto from "../components/campground/CampgroundPhoto";
 import ReviewButton from "../components/review/ReviewButton";
 import BearSafety from '../components/campground/BearSafety'; 
+import AddToFavoritesButton from '../components/favoriteCampground/addToFavoritesButton'; 
 
 
 
@@ -84,6 +85,7 @@ export function Campground() {
 
         <SavePDF />
         <Share />
+        <AddToFavoritesButton campgroundId={campground.id} />
         <ReviewButton campgroundId={ id }/>
         <DisplayAllReviews campgroundId={ id }/>
     </div>
